@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
     crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}   
     
     {% block extra_css %}    
@@ -39,7 +40,7 @@
   </head>
   <body>
     <header class="container-fluid px-0">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark px-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-black px-4">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -56,20 +57,20 @@
                     </li>
                 </ul>
             </div>
-            <div class="mx-auto order-0">
+            <div class="mx-auto order-0 mobile-display">
                 <a class="navbar-brand mx-auto" href="{% url 'home' %}">Tatzy Tattoo</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav nav-pills ms-auto">
                     <li class="nav-item">
                         <form method="GET" action="{% url 'home' %}">
                             <div class="input-group w-100">
-                                <input class="form-control" type="text" name="q" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button class="form-control btn" type="submit">
+                                <input class="form-control search-input" type="text" name="q" placeholder="Search">
+                                <div class="input-group-append search-btn">
+                                    <button class="form-control btn search-btn" type="submit">
                                         <span class="icon">
                                             <i class="fas fa-search"></i>
                                         </span>
@@ -130,7 +131,7 @@
     {% endblock %} 
 
 
-    <footer>
+    <footer class="footer">
         <div class="footer-items">
             <div class="footer-info">
                 <p>© 2021, Tatzy Tattoo</p>

@@ -10,13 +10,13 @@
     --light-black: #000000b5;
 }
 
-html {
-    height: 100%;
-}
-
-body {
+html, body {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .icon {
@@ -109,6 +109,10 @@ body {
 .search-group {
     width: clamp(280px, 50vw, 600px);
     margin-left: 10px;
+}
+
+.page_content {
+    flex: 1;
 }
 
 .form-control:focus {
@@ -295,6 +299,30 @@ footer {
     gap: 2rem;
     flex-wrap: wrap;
     width: 100%;
+}
+
+.card {
+    border-radius: 0;
+    border: 1px solid var(--light-black);
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card-link, .card-link:hover {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.card-title {
+    border-bottom: 1px solid var(--light-black);
+    padding-bottom: 1rem;
+}
+
+.card-price {
+    margin: 1rem 0 0 0;
+    letter-spacing: 2px;
 }
 
 .gallery-section {

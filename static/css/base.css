@@ -116,6 +116,7 @@ html, body {
 
 .page_content {
     flex: 1;
+    padding: 10px;
 }
 
 .form-control:focus {
@@ -424,4 +425,35 @@ footer {
 }
 .search-query {
     font-size: 1.3rem;
+}
+
+/* Cart page */
+
+.cart-section h2 {
+    font-family: var(--ff1);
+}
+
+.cart-summary {
+    background-color: var(--black);
+    color: var(--white);
+    position: relative;
+}
+
+.summary-table {
+    color: var(--white);
+}
+
+.summary-table th{
+    padding-left: 0;
+}
+
+.cart-item__title {
+    font-size: 1.2rem;
+}
+
+.checkout-button {
+    position: absolute;
+    width: 80%;
+    bottom: 3rem;
+    left: 10%;
 }

@@ -33,8 +33,11 @@
                     </table>
                 </div>
                 <div class="purchase-buttons mt-4">
-                    <button type="button" class="btn btn-black border-black">Buy now</button>
-                    <button type="button" class="btn btn-white border-black">Add to cart</button>
+                    <form class="form" action="{% url 'add_to_cart' doodle_product.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-black border-black">Buy now</button>
+                        <button type="submit" class="btn btn-white border-black">Add to cart</button>
+                    </form>
                 </div>
             </div>
         </div>

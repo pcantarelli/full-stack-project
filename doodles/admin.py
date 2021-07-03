@@ -10,6 +10,9 @@ class DoodlesAdmin(admin.ModelAdmin):
         'size', 
         'time_to_complete', 
         'image',
+        'created_at',
+        'updated_at',
     )
+    ordering = ('-updated_at',)
 
 admin.site.register(Doodles, DoodlesAdmin)

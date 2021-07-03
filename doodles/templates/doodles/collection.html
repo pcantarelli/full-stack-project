@@ -6,6 +6,15 @@
     <section class="doodles-section container-xxl index-section">
 
         <h1 class="m-auto">Doodles</h1>
+        <div class="sort-container">
+            <ul class="sort-list">
+                <li class="sort-title">Sort by:</li>
+                <li ><a href="" class="sort-link">Price</a></li>
+                <li ><a href="" class="sort-link">Name</a></li>
+                <li ><a href="" class="sort-link">Size</a></li>
+                <li ><a href="" class="sort-link">Time</a></li>
+            </ul>
+        </div>
         <div class="doodle-cards">
             {% for doodle in doodles %}
                 {% include 'includes/card.html' %}

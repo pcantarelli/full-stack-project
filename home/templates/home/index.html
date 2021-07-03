@@ -16,12 +16,11 @@
 
     <h1 class="m-auto">Doodles available</h1>
 
-    <div class="doodle-cards">
-      {% include 'includes/card.html' %}
-      {% include 'includes/card.html' %}
-      {% include 'includes/card.html' %}
-      {% include 'includes/card.html' %}
-    </div>
+      <div class="doodle-cards">
+          {% for doodle in doodles|slice:":4" %}
+          {% include 'includes/card.html' %}
+          {% endfor %}
+      </div>
     <a href="#" class="btn btn-black btn-card mx-auto">View more</a>
 </section>   
 
@@ -34,7 +33,7 @@
         <img src="media/Doodle2.jpeg" class="gallery-img" alt="...">
         <img src="media/Doodle2.jpeg" class="gallery-img" alt="...">
     </div>
-    
+
     <a href="#" class="btn btn-black btn-card mx-auto">View more</a>
 
 </section>    

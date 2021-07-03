@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+
+<section class="doodle-section container-xxl index-section">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="row mx-1">
+                    <div class="col-12">
+                        <figure>
+                            <img src="/media/Doodle2_Ay44am1.jpeg" class="img-fluid z-depth-1">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-1 pt-md-5 px-4">
+                <h1 class="doodle-name mb-3">{{ doodle_product.name }}</h1>
+                <h4 class="doodle-price mb-md-5 mb-sm-3">${{ doodle_product.price }}</h4>
+                <p class="doodle-description">{{ doodle_product.description }}.</p>
+                <div class="table-responsive">
+                    <table class="table table-sm table-borderless">
+                        <tbody>
+                            <tr>
+                                <th class="w-50"><strong>Size</strong></th>
+                                <td>{{ doodle_product.size }} cm<sup>2</sup></td>
+                            </tr>
+                            <tr>
+                                <th class="w-50"><strong>Estimated time to complete</strong></th>
+                                <td>{{ doodle_product.time_to_complete }} hours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="purchase-buttons mt-4">
+                    <button type="button" class="btn btn-black border-black">Buy now</button>
+                    <button type="button" class="btn btn-white border-black">Add to cart</button>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section class="doodles-section container-xxl index-section">
+    <h1 class="m-auto">You may also like</h1>
+    <div class="doodle-cards">
+        {% for doodle in doodles %}
+        {% if doodle.id != doodle_product.id and forloop.counter < 5 %}
+        {% include 'includes/card.html' %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>   
+
+{% endblock %}

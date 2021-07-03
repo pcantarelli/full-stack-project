@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.db.models import Q
+from django.db.models.functions import Lower
+
 from .models import Doodles
 
 # Create your views here.
@@ -13,9 +15,30 @@ def doodles_collection(request):
     """
 
     doodles = Doodles.objects.all()
+    sort = None
+    direction = None
+    doodles = doodles.order_by('-updated_at')
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            print(sortkey)
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                doodles = doodles.annotate(lower_name=Lower('name'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            print(sortkey)
+            doodles = doodles.order_by(sortkey)
+
+    sorting = f'{sort}_{direction}'
 
     context = {
         'doodles': doodles,
+        'sorting': sorting,
     }
 
     return render (request, 'doodles/collection.html', context)

@@ -321,6 +321,10 @@ footer {
     color: var(--black);
 }
 
+.card-body {
+    padding: 1rem 1rem 0;
+}
+
 .card-title {
     border-bottom: 1px solid var(--light-black);
     padding-bottom: 1rem;
@@ -330,6 +334,10 @@ footer {
     margin: 1rem 0 0 0;
     letter-spacing: 2px;
 }
+.card-size, .card-time {
+    font-size: .8rem;
+}
+
 
 .gallery-section {
     display: flex;
@@ -392,6 +400,9 @@ footer {
 }
 
 /* Doodle page */
+.doodle-img {
+    width: 100%;
+}
 
 .doodle-name {
     font-family: var(--ff1);

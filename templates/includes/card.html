@@ -3,7 +3,30 @@
         <img src="/media/{{ doodle.image }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ doodle.name }}</h5>
-            <p class="card-price">${{ doodle.price }}</p>
+            <p class="card-price"></p>
+            <div class="table-responsive">
+                 <table class="table table-sm table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="card-price">${{ doodle.price }}</th>
+                            <td class="w-75 text-end">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="w-50 text-end"><i class="fas fa-ruler-vertical"></i></td>
+                                            <td class="w-25 card-size">{{ doodle.size }} cm<sup>2</sup></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="w-50 text-end"><i class="fas fa-clock"></i></th>
+                                            <td class="w-25 card-time">{{ doodle.time_to_complete }} hours</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
       </div>
 </a>

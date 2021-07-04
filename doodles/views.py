@@ -48,6 +48,10 @@ def dooddle_page(request, doodle_id):
 
     doodle_product = get_object_or_404(Doodles, pk=doodle_id)
     doodles = Doodles.objects.all()
+
+    # Exclude doodle product from doodles
+    doodles = doodles.exclude(id__in=[doodle_id])
+
     
 
     context = {

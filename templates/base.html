@@ -89,7 +89,14 @@
                     <a class="nav-icons" href="#"><i class="fas fa-user"></i></a>
                     <!-- <a class="nav-link" href="{% url 'account_login' %}">Login</a> -->
                     {% endif %}
-                    <a class="nav-icons" id="cart-icon" href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <div class="cart-icon__container">
+                        <a class="nav-icons" id="cart-icon" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i></a>
+                        {% if cart_items %}
+                             <div class="cart-buble">
+                            <div class="cart-counter">{{ cart_items_count }}</div>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <div class="container-fluid w-100 menu">

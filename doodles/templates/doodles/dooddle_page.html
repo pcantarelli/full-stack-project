@@ -46,10 +46,8 @@
 <section class="doodles-section container-xxl index-section">
     <h1 class="m-auto">You may also like</h1>
     <div class="doodle-cards">
-        {% for doodle in doodles %}
-        {% if doodle.id != doodle_product.id and forloop.counter < 5 %}
+        {% for doodle in doodles|slice:":4" %}
         {% include 'includes/card.html' %}
-        {% endif %}
         {% endfor %}
     </div>
 </section>   

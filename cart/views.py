@@ -8,13 +8,21 @@ def cart(request):
     Function to return a view of the cart page
 
     """
+    cart = request.session.get('cart', {})
     doodles = Doodles.objects.all()
+    cart_list = []
 
-    doodles_context = {
+    # Exclude cart items from doodles list
+    for key in cart.keys():
+        cart_list.append(key)
+    doodles = doodles.exclude(id__in=cart_list)
+
+    context = {
         'doodles': doodles,
+        'cart': cart,
     }
-
-    return render (request, 'cart/cart.html', doodles_context)
+    print(doodles)
+    return render (request, 'cart/cart.html', context)
 
 def add_to_cart(request, item_id):
     """
@@ -22,17 +30,7 @@ def add_to_cart(request, item_id):
     """
 
     cart = request.session.get('cart', {})
-
     cart[item_id] = 1
-
     request.session['cart'] = cart
 
-    doodles = Doodles.objects.all()
-
-    doodles_context = {
-        'doodles': doodles,
-    }
-
-    print(request.session['cart'])
-
-    return render (request, 'cart/cart.html', cart)
+    return redirect('cart')

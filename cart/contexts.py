@@ -12,6 +12,7 @@ def cart_items(request):
     for item_id, item_data in cart.items():
         item_obj = get_object_or_404(Doodles, pk=item_id)
         cart_price_total += item_obj.price
+        cart_items_count += 1
         cart_time_total += item_obj.time_to_complete
         cart_items.append({
             'item_id': item_id,

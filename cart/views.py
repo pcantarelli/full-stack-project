@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponse, get_object_or_404
+from django.contrib import messages
 from doodles.models import Doodles
 
 # Create your views here.
@@ -21,7 +22,6 @@ def cart(request):
         'doodles': doodles,
         'cart': cart,
     }
-    print(doodles)
     return render (request, 'cart/cart.html', context)
 
 def add_to_cart(request, item_id):
@@ -34,3 +34,22 @@ def add_to_cart(request, item_id):
     request.session['cart'] = cart
 
     return redirect('cart')
+
+def remove_from_cart(request, item_id):
+    """Function to remove products to cart object"""
+
+    redirect_url = request.POST.get('redirect_url')
+
+    try:
+        doodle = get_object_or_404(Doodles, pk=item_id)
+        cart = request.session.get('cart', {})
+
+
+        cart.pop(item_id)
+       
+        request.session['cart'] = cart
+        return redirect('cart', status=200)
+
+    except Exception as e:
+        messages.error(request, f'Error trying to remove item: {e}')
+        return redirect(redirect_url, status=500)

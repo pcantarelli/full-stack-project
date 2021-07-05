@@ -133,8 +133,24 @@
     </header>
 
     {% if messages %}
-    <div class="message-container">
-
+    <div class="toast-messages">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container position-absolute top-0 end-0 p-3">
+                {% for message in messages %}
+                    {% with message.level as level %}
+                        {% if level == 40 %}
+                            {% include 'includes/toast_messages/sucess_toast.html' %}
+                        {% elif level == 30 %}
+                            {% include 'includes/toast_messages/sucess_toast.html' %}
+                        {% elif level == 25 %}
+                            {% include 'includes/toast_messages/sucess_toast.html' %}
+                        {% else %}
+                            {% include 'includes/toast_messages/sucess_toast.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
     {% endif %}
 
@@ -149,6 +165,7 @@
     {% block body_js %}
     {% endblock %}
 
+    
 
     <footer class="footer">
         <div class="footer-items">

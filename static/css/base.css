@@ -491,10 +491,47 @@ footer {
 }
 
 /* Gallery */
-.gallery-grid {
+/* .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    grid-auto-rows: auto;
+    grid-auto-rows: max(500px);
     grid-gap: 5px;
     grid-auto-flow: dense;
+    grid-auto-columns: dense;
+
 }
+
+.img-grid {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.gallery-item {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.height-span {
+    grid-column: span 2;
+}
+
+.width-span {
+    grid-row: span 2;
+} */
+
+.img-grid {
+    width: 100%;
+}
+
+.gallery-item {
+    float: left;
+    width: 330px;
+    height: 430px;
+  }
+  
+  .width-span { width: 660px; }
+  .height-span { height: 660px; }
+

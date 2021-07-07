@@ -3,7 +3,7 @@ from .models import GalleryImages
 
 # Create your views here.
 
-def doodles_collection(request):
+def gallery(request):
     """
     Function to return a view of the gallery images
     """

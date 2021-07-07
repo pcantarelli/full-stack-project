@@ -3,6 +3,9 @@
 
 {% block page_content %}
 
+
+
+
 <section class="gallery-section container-xxl index-section">
 
     <h1 class="m-auto">Gallery</h1>
@@ -10,14 +13,15 @@
 
     <div class="gallery-grid">
         {% for image in gallery_images %}
-        <div class="gallery-item">
+        <div class="gallery-item {% if image.height >  image.width%} height-span {% else %} width-span {% endif %}">
             <a href="/media/{{ image.image }}" class="glightbox">
-                <img src="/media/{{ image.image }}" alt="{{ image.name }}" />
+                <img src="/media/{{ image.image }}" alt="{{ image.name }}" class="img-grid" />
             </a>
         </div>
         {% endfor %}
     </div>
-
 </section>
 
+
 {% endblock %}
+

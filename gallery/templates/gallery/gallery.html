@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+
+<section class="gallery-section container-xxl index-section">
+
+    <h1 class="m-auto">Gallery</h1>
+    <p class="m-auto">Those are my last works</p>
+
+    <div class="gallery-grid">
+        {% for image in gallery_images %}
+        <div class="gallery-item">
+            <a href="/media/{{ image.image }}" class="glightbox">
+                <img src="/media/{{ image.image }}" alt="{{ image.name }}" />
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}

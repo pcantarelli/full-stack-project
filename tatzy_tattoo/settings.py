@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'doodles',
     'cart',
     'checkout',
+    'gallery',
 ]
 
 MIDDLEWARE = [

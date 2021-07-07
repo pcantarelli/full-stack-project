@@ -28,12 +28,14 @@ def add_to_cart(request, item_id):
     """
     Function to add products to cart object
     """
-
+    doodle = get_object_or_404(Doodles, pk=item_id)
     cart = request.session.get('cart', {})
     cart[item_id] = 1
     request.session['cart'] = cart
+    messages.success(request, f'{doodle.name} added to your cart')
 
     return redirect('cart')
+
 
 def remove_from_cart(request, item_id):
     """Function to remove products to cart object"""
@@ -46,7 +48,8 @@ def remove_from_cart(request, item_id):
 
 
         cart.pop(item_id)
-       
+        messages.success(request, f'{doodle.name} removed sucessfuly')
+
         request.session['cart'] = cart
         return redirect('cart', status=200)
 

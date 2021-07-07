@@ -139,13 +139,13 @@
                 {% for message in messages %}
                     {% with message.level as level %}
                         {% if level == 40 %}
-                            {% include 'includes/toast_messages/sucess_toast.html' %}
+                            {% include 'includes/toast_messages/error_toast.html' %}
                         {% elif level == 30 %}
-                            {% include 'includes/toast_messages/sucess_toast.html' %}
+                            {% include 'includes/toast_messages/warning_toast.html' %}
                         {% elif level == 25 %}
                             {% include 'includes/toast_messages/sucess_toast.html' %}
                         {% else %}
-                            {% include 'includes/toast_messages/sucess_toast.html' %}
+                            {% include 'includes/toast_messages/info_toast.html' %}
                         {% endif %}
                     {% endwith %}
                 {% endfor %}
@@ -161,11 +161,7 @@
         {% block page_content %}
         {% endblock %}
     </div>
-
-    {% block body_js %}
-    {% endblock %}
-
-    
+ 
 
     <footer class="footer">
         <div class="footer-items">
@@ -180,7 +176,10 @@
         </div>
     </footer>
     
+
+    {% block body_js %}
     <script src="{% static 'js/base.js' %}"></script>
+    {% endblock %}
 
 </body>
 

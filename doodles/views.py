@@ -35,13 +35,13 @@ def doodles_collection(request):
             doodles = doodles.order_by(sortkey)
 
     sorting = f'{sort}_{direction}'
-
     context = {
         'doodles': doodles,
         'sorting': sorting,
     }
 
     return render (request, 'doodles/collection.html', context)
+
 
 def dooddle_page(request, doodle_id):
     """ A view to show individual doodle product page """
@@ -60,6 +60,7 @@ def dooddle_page(request, doodle_id):
     }
 
     return render(request, 'doodles/dooddle_page.html', context)
+
 
 def doodles_search(request):
     """

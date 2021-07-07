@@ -8,4 +8,6 @@ $("#search-close").on("click", () => {
        $(".search-drawer").toggleClass('search-colapse');
 });
 
-$('.toast').toast('show');
+$(document).ready(function() {
+       $(".toast").toast("show");
+     });

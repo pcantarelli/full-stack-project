@@ -6,16 +6,20 @@
 
 
 
-<section class="gallery-section container-xxl index-section">
+<section class="gallery-page container-xxl index-section">
 
-    <h1 class="m-auto">Gallery</h1>
-    <p class="m-auto">Those are my last works</p>
+    <h1 class="text-center mt-2">Gallery</h1>
+    <p class="text-center mb-4">Those are my last works</p>
 
     <div class="gallery-grid">
         {% for image in gallery_images %}
         <div class="gallery-item {% if image.height >  image.width%} height-span {% else %} width-span {% endif %}">
-            <a href="/media/{{ image.image }}" class="glightbox">
+            <a href="/media/{{ image.image }}" class="gallery-link">
                 <img src="/media/{{ image.image }}" alt="{{ image.name }}" class="img-grid" />
+                <div class="gallery-body">
+                    <h5>{{ image.name }}</h5>
+                    <p>{{ image.description }}</p>
+                </div>
             </a>
         </div>
         {% endfor %}

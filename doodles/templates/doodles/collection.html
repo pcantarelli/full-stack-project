@@ -16,10 +16,12 @@
             </ul>
         </div>
         <div class="doodle-cards">
-            {% for doodle in doodles %}
+            {% for doodle in page_obj %}
                 {% include 'includes/card.html' %}
             {% endfor %}
         </div>
+
+        {% include 'includes/pagination.html' %}
     
     </section>   
 

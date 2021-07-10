@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.core.paginator import Paginator
 
 from .models import Doodles
 
@@ -35,9 +36,13 @@ def doodles_collection(request):
             doodles = doodles.order_by(sortkey)
 
     sorting = f'{sort}_{direction}'
+    paginator = Paginator(doodles, 8) # Show 8 images per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         'doodles': doodles,
         'sorting': sorting,
+        'page_obj': page_obj
     }
 
     return render (request, 'doodles/collection.html', context)

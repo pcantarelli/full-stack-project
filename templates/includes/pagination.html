@@ -1,0 +1,17 @@
+<div class="pagination">
+    <span class="pagination-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn btn-black"><i class="fas fa-fast-backward"></i> First</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-black"><i class="fas fa-step-backward"></i> Previous</a>
+        {% endif %}
+
+        <span class="pagination-current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-black">Next <i class="fas fa-step-forward"></i></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-black">Last <i class="fas fa-fast-forward"></i></a>
+        {% endif %}
+    </span>
+</div>

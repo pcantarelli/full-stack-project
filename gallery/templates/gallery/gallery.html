@@ -12,9 +12,9 @@
     <p class="text-center mb-4">Those are my last works</p>
 
     <div class="gallery-grid">
-        {% for image in gallery_images %}
+        {% for image in page_obj %}
         <div class="gallery-item {% if image.height >  image.width%} height-span {% else %} width-span {% endif %}">
-            <a href="/media/{{ image.image }}" class="gallery-link">
+            <a href="{% url 'image' image.id %}" class="gallery-link">
                 <img src="/media/{{ image.image }}" alt="{{ image.name }}" class="img-grid" />
                 <div class="gallery-body">
                     <h5>{{ image.name }}</h5>
@@ -24,6 +24,9 @@
         </div>
         {% endfor %}
     </div>
+
+    {% include 'includes/pagination.html' %}
+
 </section>
 
 

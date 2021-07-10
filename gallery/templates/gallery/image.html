@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+
+
+
+
+<section class="image-page container-xxl index-section">
+
+    <h1 class="text-center mt-2">{{ image.name }}</h1>
+    <p class="text-center mb-4">{{ image.description }}</p>
+
+
+    <div class="img-container">
+        <img src="/media/{{ image.image }}" alt="{{ image.name }}" class="img-full" />
+    </div>
+
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-black" class>Back</a>
+</section>
+
+
+{% endblock %}
+

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+
+<section class="doodle-section container-xxl index-section mt-4">
+    <form class="form" action="" method="POST">
+        {% csrf_token %}
+
+        
+
+        <button type="submit" class="btn btn-black border-black">Buy now</button>
+        <button type="submit" class="btn btn-white border-black">Add to cart</button>
+    </form>
+</section>
+
+<section class="doodles-section container-xxl index-section">
+    <h1 class="m-auto">You may also like</h1>
+    <div class="doodle-cards">
+        {% for doodle in doodles|slice:":4" %}
+        {% include 'includes/card.html' %}
+        {% endfor %}
+    </div>
+</section>   
+
+{% endblock %}

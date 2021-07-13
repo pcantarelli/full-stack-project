@@ -4,7 +4,7 @@ from django.db import models
 class GalleryImages(models.Model):
 
     class Meta:
-        verbose_name_plural = 'GalleryImages'
+        verbose_name_plural = 'Gallery images'
 
     name = models.CharField(max_length=254)
     description = models.TextField()

@@ -8,8 +8,8 @@ def custom(request):
 
     work_types = CustomWorkType.objects.all()
     sizes = CustomSizes.objects.all()
-    size_max = sizes.order_by('size').first()
-    size_min = sizes.order_by('-size').first()
+    size_max = sizes.order_by('-size').first()
+    size_min = sizes.order_by('size').first()
 
 
     context = {
@@ -19,4 +19,4 @@ def custom(request):
         'size_min': size_min,       
     }
 
-    return render(request, 'doodles/dooddle_page.html', context)
+    return render(request, 'custom/custom.html', context)

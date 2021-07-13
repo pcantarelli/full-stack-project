@@ -10,6 +10,9 @@ class CustomWorkType(models.Model):
     def __str__(self):
         return self.work_type
 
+    def name_no_space(self):
+        return self.work_type.replace(' ', '_')
+
 class CustomSizes(models.Model):
 
     class Meta:

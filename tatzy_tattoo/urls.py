@@ -26,4 +26,5 @@ urlpatterns = [
     path('doodles/', include('doodles.urls')),
     path('cart/', include('cart.urls')),
     path('gallery/', include('gallery.urls')),
+    path('custom/', include('custom.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

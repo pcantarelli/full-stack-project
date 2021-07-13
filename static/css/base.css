@@ -410,6 +410,13 @@ footer {
 .gallery-img {
     width: calc(100% / 3);
     border: solid 1px var(--black);
+    filter: grayscale(100%);
+    transition: filter .7s ease-in;
+    object-fit: cover;
+}
+
+.gallery-img:hover, .gallery-img:active, .gallery-img:focus  {
+    filter: grayscale(0%);
 }
 
 @media only screen and (max-width: 768px) {

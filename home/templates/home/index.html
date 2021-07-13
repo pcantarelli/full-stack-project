@@ -17,11 +17,11 @@
     <h1 class="m-auto">Doodles available</h1>
 
       <div class="doodle-cards">
-          {% for doodle in doodles|slice:":4" %}
+          {% for doodle in doodles %}
           {% include 'includes/card.html' %}
           {% endfor %}
       </div>
-    <a href="#" class="btn btn-black btn-card mx-auto">View more</a>
+    <a href="{% url 'doodles' %}" class="btn btn-black btn-card mx-auto">View more</a>
 </section>   
 
 <section class="gallery-section index-section">
@@ -29,12 +29,12 @@
     <h1 class="text-center">Last works</h1>
 
     <div class="gallery-images">
-        <img src="media/Doodle2.jpeg" class="gallery-img" alt="Doodle2">
-        <img src="media/Doodle2.jpeg" class="gallery-img" alt="...">
-        <img src="media/Doodle2.jpeg" class="gallery-img" alt="...">
+        {% for image in gallery_images %}
+        <img src="/media/{{ image.image }}" alt="{{ image.name }}" class="gallery-img"/>
+        {% endfor %}
     </div>
 
-    <a href="#" class="btn btn-black btn-card mx-auto">View more</a>
+    <a href="{% url 'gallery' %}" class="btn btn-black btn-card mx-auto">View more</a>
 
 </section>    
 

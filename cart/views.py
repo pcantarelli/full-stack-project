@@ -1,6 +1,9 @@
+import uuid
 from django.shortcuts import redirect, render, HttpResponse, get_object_or_404
 from django.contrib import messages
 from doodles.models import Doodles
+from custom.models import CustomWorkType, CustomSizes
+
 
 # Create your views here.
 
@@ -11,12 +14,15 @@ def cart(request):
     """
     cart = request.session.get('cart', {})
     doodles = Doodles.objects.all()
-    cart_list = []
+    doodles_in_cart_list = []
 
     # Exclude cart items from doodles list
-    for key in cart.keys():
-        cart_list.append(key)
-    doodles = doodles.exclude(id__in=cart_list)
+    for item_id, item_data in cart.items():
+        if item_data['product_type'] == 'doodle':
+            doodles_in_cart_list.append(item_id)
+
+    doodles = doodles.exclude(id__in=doodles_in_cart_list)
+    doodles = doodles[:4]
 
     context = {
         'doodles': doodles,
@@ -30,7 +36,10 @@ def add_to_cart(request, item_id):
     """
     doodle = get_object_or_404(Doodles, pk=item_id)
     cart = request.session.get('cart', {})
-    cart[item_id] = 1
+    cart[item_id] = {
+        'product_type': 'doodle',
+        'quantity': 1
+        }
     request.session['cart'] = cart
     messages.success(request, f'{doodle.name} added to your cart')
 
@@ -40,19 +49,54 @@ def add_to_cart(request, item_id):
 def remove_from_cart(request, item_id):
     """Function to remove products to cart object"""
 
-    redirect_url = request.POST.get('redirect_url')
-
     try:
-        doodle = get_object_or_404(Doodles, pk=item_id)
         cart = request.session.get('cart', {})
-
-
+        cart_item = cart[item_id]
         cart.pop(item_id)
-        messages.success(request, f'{doodle.name} removed sucessfuly')
+
+        if cart_item['product_type'] == 'doodle':
+            doodle = get_object_or_404(Doodles, pk=item_id)
+            messages.success(request, f'{doodle.name} removed sucessfuly')
+        else:
+            work_type = cart_item['work_type']
+            messages.success(request, f'Custom {work_type} removed sucessfuly')
 
         request.session['cart'] = cart
-        return redirect('cart', status=200)
+        return redirect('cart')
 
     except Exception as e:
         messages.error(request, f'Error trying to remove item: {e}')
-        return redirect(redirect_url, status=500)
+        return redirect('cart')
+
+def add_custom_to_cart(request):
+    """
+    Function to add custom product to cart object
+    """
+    cart = request.session.get('cart', {})
+    # Check how many custom products are in the cart
+    total_custom_on_cart = 0
+    for item_id, item_data in cart.items():
+        if item_data['product_type'] == 'custom':
+            total_custom_on_cart += 1
+
+    item_id = f'C_{total_custom_on_cart + 1}'
+    work_type = request.POST.get('work_type')
+    size = float(request.POST.get('size'))
+    print('size')
+    print(size)
+    custom_total_price = float(request.POST.get('total_price'))
+    user_image = request.POST.get('user_image')
+
+    cart[item_id] = {
+        'product_type': 'custom',
+        'work_type': work_type,
+        'size': size,
+        'quantity': 1,
+        'user_image': user_image,
+        'custom_total_price': custom_total_price,
+        }
+    
+    request.session['cart'] = cart
+    messages.success(request, f'Custom tattoo added to your cart')
+
+    return redirect('cart')

@@ -32,7 +32,9 @@ body {
     width: 1.5rem;
 }
 
-
+.hide {
+    display: none;
+}
 
 .navbar-brand {
     font-family: 'Shadows Into Light', cursive;
@@ -407,12 +409,17 @@ footer {
     width: 100%;
 }
 
-.gallery-img {
+.index-galery__width {
     width: calc(100% / 3);
+}   
+
+.gallery-img {
+    width: 100%;
     border: solid 1px var(--black);
     filter: grayscale(100%);
     transition: filter .7s ease-in;
     object-fit: cover;
+    height: 100%;
 }
 
 .gallery-img:hover, .gallery-img:active, .gallery-img:focus  {
@@ -611,6 +618,27 @@ footer {
 }
 
 /* Custom */
+.custom-img {
+    width: 100%;
+}
+.type-container, .size-container {
+    margin-bottom: 1rem;
+}
+.option-title {
+    font-size: 1.3rem;
+    margin-bottom: .3rem;
+    font-weight: 500;
+}
+
+.size-select {
+    font-size: 1.1rem;
+    width: 60px;
+    padding: 3px 5px 3px 4px;
+    margin: 0 6px;
+}
+
+
+/* TEst */
 .slide-container {
     display: flex;
     flex-wrap: wrap;
@@ -705,18 +733,3 @@ footer {
     max-height: 500px;
 }
 
-.type-container, .size-container {
-    margin-bottom: 1rem;
-}
-.option-title {
-    font-size: 1.3rem;
-    margin-bottom: .3rem;
-    font-weight: 500;
-}
-
-.size-select {
-    font-size: 1.1rem;
-    width: 60px;
-    padding: 3px 5px 3px 4px;
-    margin: 0 6px;
-}

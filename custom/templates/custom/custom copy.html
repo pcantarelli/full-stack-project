@@ -4,20 +4,37 @@
 {% block page_content %}
 
 <section class="doodle-section container-xxl index-section mt-4">
-    <form class="form" action="{% url 'add_custom_to_cart' %}" method="POST">
+    <form class="form" action="" method="POST">
         {% csrf_token %}
 
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="row mx-1">
                     <div class="col-12">
-                        <img src="/media/custom_front.png" alt="Custom image" class="custom-img">
+                        <div class="slide-container">
+                            <div class="slider-areas z-depth-2 slide-active">
+                                <div class="left-area">
+                                    <div class="btn btn-black btn-front">Front</div>
+                                </div>
+                                <div class="right-area ">
+                                    <div class="btn btn-white btn-back">Back</div>
+                                </div>
+                                <div class="custom-images">
+                                    <div class="image-front">
+                                        <div class="front-checkboxes"></div>
+                                    </div>
+                                    <div class="image-back hidden-form ">
+                                        <div class="back-checkboxes"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 mt-1 pt-md-5 px-4">
                 <h1 class="doodle-name mb-3">Custom</h1>
-                <h4 class="doodle-price mb-md-3 mb-sm-3" id="custom-price">$ XX.XX</h4>
+                <h4 class="doodle-price mb-md-5 mb-sm-3" id="custom-price">$ XX.XX</h4>
                 <p class="doodle-description">
                     Your custom work on any work style and size you prefer <br>
                     Select your options to update the final price
@@ -26,7 +43,7 @@
                 <div class="type-container">
                     <div class="option-title">Work type:</div>
                     {% for type in work_types %}
-                    <input type="radio" id="{{ type.name_no_space }}" name="work_type" value="{{ type.work_type }}"
+                    <input type="radio" id="{{ type.name_no_space }}" name="work-type" value="{{ type.work_type }}"
                         data-type-price="{{ type.price_type }}" {% if forloop.counter == 1 %} checked {% endif %}>
                     <label for="{{ type.name_no_space }}">{{ type.work_type }}</label><br>
                     {% endfor %}
@@ -36,7 +53,7 @@
                     <label for="size" class="option-title">Size:</label>
                     <select name="size" id="size" class="size-select">
                         {% for option in sizes %}
-                        <option value="{{ option.price_size }}" data-size-price="{{ option.price_size }}"{% if forloop.counter == 1 %} selected {% endif %}>{{ option.size }}
+                        <option value="{{ sizes.size }}" data-size-price="{{ option.price_size }}">{{ option.size }}
                         </option>
                         {% endfor %}
                     </select><span>cm<sup>2</sup></span>
@@ -45,12 +62,10 @@
                 <div class="file-container">
                     <label for="user-image" class="option-title">Upload your reference image: </label><span
                         class="muted"> (jpeg or png)</span>
-                    <input type="file" id="user-image" name="user_image" accept="image/png, image/jpeg">
+                    <input type="file" id="user-image" name="user-image" accept="image/png, image/jpeg">
                 </div>
 
-                <input type="text" id="total-price" name="total_price" value="00.00" class="hide">
-
-                <div class="purchase-buttons mt-5">
+                <div class="purchase-buttons mt-4">
                     <button type="submit" class="btn btn-black border-black">Buy now</button>
                     <button type="submit" class="btn btn-white border-black">Add to cart</button>
                 </div>
@@ -75,13 +90,9 @@
 {{ block.super }}
 <script type="text/javascript">
     $(document).ready(function () {
-        let typePrice = $('input[name=work_type]:checked').attr("data-type-price")
-        let sizePrice = parseFloat($('#size').find(":selected").attr("data-size-price"))
-        let totalPrice = typePrice * sizePrice;
-        totalPricetoString = `$ ${totalPrice.toFixed(2)}`;
-        console.log(`totalPrice: ${totalPricetoString}`)
-        $('#custom-price').html(totalPricetoString)
-        $('#total-price').val(totalPrice)
+        let typePrice = $('input[name=work-type]:checked').attr("data-type-price")
+        let sizePrice = parseFloat($('#size').find(":selected").attr("data-size-price"));
+        let totalPrice = 0
 
         function updateTotalPrice() {
             console.log(`updateTotalPrice:`)
@@ -92,12 +103,10 @@
             totalPricetoString = `$ ${totalPrice.toFixed(2)}`;
 
             $('#custom-price').html(totalPricetoString)
-            $('#total-price').val(totalPrice)
-
         }
 
-        $('input[name=work_type]').change(function () {
-            typePrice = parseFloat($('input[name=work_type]:checked').attr("data-type-price"));
+        $('input[name=work-type]').change(function () {
+            typePrice = parseFloat($('input[name=work-type]:checked').attr("data-type-price"));
             console.log(typeof (typePrice));
 
             updateTotalPrice();
@@ -112,7 +121,6 @@
         });
     })
 
-    /*remove
     $('.btn-back').on("click", () => {
         $('.slider-areas').addClass("slide-active");
         $('.image-back').removeClass("hidden-form");
@@ -123,6 +131,6 @@
         $('.slider-areas').removeClass("slide-active");
         $('.image-back').addClass("hidden-form");
         $('.image-front').removeClass("hidden-form");
-    }); */
+    });
 </script>
 {% endblock %}

@@ -25,3 +25,15 @@ class CustomSizes(models.Model):
 
     def __str__(self):
         return str(self.size)
+
+class CustomersFiles(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Customers Files'
+
+    customer_file = models.FileField(upload_to='custom/customers_files', null=True, blank=True)
+    customer_file_url = models.URLField(max_length=1024, null=True, blank=True)  
+
+
+    def __str__(self):
+        return str(self.id)

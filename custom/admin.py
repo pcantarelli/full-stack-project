@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomWorkType, CustomSizes
+from .models import CustomWorkType, CustomSizes, CustomersFiles
 
 
 class CustomWorkTypeAdmin(admin.ModelAdmin):
@@ -19,6 +19,15 @@ class CustomSizesAdmin(admin.ModelAdmin):
     )
     ordering = ('-updated_at',)
 
+class CustomersFilesAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'customer_file',
+        'customer_file_url',
+    )
+
 admin.site.register(CustomWorkType, CustomWorkTypeAdmin)
 admin.site.register(CustomSizes, CustomSizesAdmin)
+admin.site.register(CustomersFiles, CustomersFilesAdmin)
+
 

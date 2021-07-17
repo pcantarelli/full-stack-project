@@ -4,7 +4,7 @@
 {% block page_content %}
 
 <section class="doodle-section container-xxl index-section mt-4">
-    <form class="form" action="{% url 'add_custom_to_cart' %}" method="POST">
+    <form class="form" action="{% url 'add_custom_to_cart' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div class="row">

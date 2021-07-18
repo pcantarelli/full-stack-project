@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, reverse
 from django.contrib import messages
 
 from .forms import CheckoutForm
+from .models import Order, OrderLineItem
 
 # Create your views here.
 def checkout(request):

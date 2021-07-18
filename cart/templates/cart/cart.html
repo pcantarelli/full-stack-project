@@ -14,45 +14,45 @@
                 </div>
             </div>
             {% for item in cart_items %}
-                {% if item.item_obj.product_type %}
-                <div class="row align-items-center mb-4 p-1 mx-1 border-black">
-                    <div class="col-6 col-md-2"><img class="img-fluid" src="/media/custom_front.png"></div>
-                    <div class="col-6 col-md-10">
-                        <div class="row">
-                            <div class="col-12 col-md-4 cart-item__title">{{ item.item_obj.work_type }}</div>
-                            <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
-                                {{ item.item_obj.size }}cm<sup>2</sup></div>
-                            <div class="col-12 col-md-3 my-1">${{ item.item_obj.custom_total_price }}</div>
-                            <div class="col-12 col-md-1 text-end pe-4 my-1">
-                                <form class="form" action="{% url 'remove_from_cart' item.item_id %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" class="bg-white"><i class="fas fa-times"></i></button>
-                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                </form>
-                            </div>
+            {% if item.item_obj.product_type %}
+            <div class="row align-items-center mb-4 p-1 mx-1 border-black">
+                <div class="col-6 col-md-2"><img class="img-fluid" src="/media/custom_front.png"></div>
+                <div class="col-6 col-md-10">
+                    <div class="row">
+                        <div class="col-12 col-md-4 cart-item__title">{{ item.item_obj.work_type }}</div>
+                        <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
+                            {{ item.item_obj.size }}cm<sup>2</sup></div>
+                        <div class="col-12 col-md-3 my-1">${{ item.item_obj.custom_total_price }}</div>
+                        <div class="col-12 col-md-1 text-end pe-4 my-1">
+                            <form class="form" action="{% url 'remove_from_cart' item.item_id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="bg-white"><i class="fas fa-times"></i></button>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            </form>
                         </div>
                     </div>
                 </div>
-                {% else %}
-                <div class="row align-items-center mb-4 p-1 mx-1 border-black">
-                    <div class="col-6 col-md-2"><img class="img-fluid" src="/media/{{ item.item_obj.image }}"></div>
-                    <div class="col-6 col-md-10">
-                        <div class="row">
-                            <div class="col-12 col-md-4 cart-item__title">{{ item.item_obj.name }}</div>
-                            <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
-                                {{ item.item_obj.size }}cm<sup>2</sup></div>
-                            <div class="col-12 col-md-3 my-1">${{ item.item_obj.price }}</div>
-                            <div class="col-12 col-md-1 text-end pe-4 my-1">
-                                <form class="form" action="{% url 'remove_from_cart' item.item_id %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" class="bg-white"><i class="fas fa-times"></i></button>
-                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                                </form>
-                            </div>
+            </div>
+            {% else %}
+            <div class="row align-items-center mb-4 p-1 mx-1 border-black">
+                <div class="col-6 col-md-2"><img class="img-fluid" src="/media/{{ item.item_obj.image }}"></div>
+                <div class="col-6 col-md-10">
+                    <div class="row">
+                        <div class="col-12 col-md-4 cart-item__title">{{ item.item_obj.name }}</div>
+                        <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
+                            {{ item.item_obj.size }}cm<sup>2</sup></div>
+                        <div class="col-12 col-md-3 my-1">${{ item.item_obj.price }}</div>
+                        <div class="col-12 col-md-1 text-end pe-4 my-1">
+                            <form class="form" action="{% url 'remove_from_cart' item.item_id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="bg-white"><i class="fas fa-times"></i></button>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            </form>
                         </div>
                     </div>
                 </div>
-                {% endif %}
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
         <div class="col-md-4 cart-summary p-5">
@@ -72,7 +72,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button class="btn btn-white checkout-button">Checkout</button>
+            <a href="{% url 'checkout' %}" class="btn btn-white checkout-button">Checkout</a>
         </div>
     </div>
     {% else %}

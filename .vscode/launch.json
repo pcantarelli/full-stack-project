@@ -8,7 +8,11 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "console": "internalConsole"
+            "console": "internalConsole",
+            "env": {
+              "STRIPE_PUBLIC_KEY": "pk_test_51JEeGjCRtc6VPlnKvDt3kmwVlUHqtv7kQ1Biveg4qkjPq8mAwTtUehJJWI2KMd3kFtOPaijtSKzQO7JF1I1J6WKZ00sYJBI1Qe",
+              "STRIPE_SECRET_KEY": "sk_test_51JEeGjCRtc6VPlnK312R2J6uczIM55RCIrHrOZogFXcQluq0JZ0Lscjob6ELMMJ2RYcersAckEQR5Vf4Rg5z5PwB00LrJqJuEX",
+            }
         }
   ]
 }

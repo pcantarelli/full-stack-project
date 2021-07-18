@@ -6,7 +6,7 @@
 <section class="checkout-section container-xxl index-section mt-4">
     {% if cart_items %}
     <div class="row">
-        <div class="col-md-6 py-5">
+        <div class="col-md-6 pt-5">
             <div class="row  mb-5">
                 <div class="col ps-3">
                     <h2>Cart Items</h2>
@@ -43,7 +43,7 @@
                 <h4 class="checkout-total w-100 text-end mt-2">Total: $ {{ cart_price_total }} </h4>
             </div>
         </div>
-        <div class="col-md-6 checkout-info p-5">
+        <div class="col-md-6 checkout-info p-4 p-md-5">
             <div>
                 <h2 class="mb-5">Checkout</h2>
             </div>
@@ -52,32 +52,14 @@
                     {% csrf_token %}
                     <div class="row">
                     <div class="col-12 col-md-6 pe-md-4">
-                    <fieldset class="mb-4">
+                    <fieldset class="mb-md-4">
                         <legend class="fieldset-label w-auto">Details</legend>
                         {{ checkout_form.full_name | as_crispy_field }}
                         {{ checkout_form.email | as_crispy_field }}
                         {{ checkout_form.phone_number | as_crispy_field }}
-                    </fieldset>
-                    <fieldset class="mb-4">
-                        <legend class="fieldset-label w-auto">Payment Info</legend>
-                        <!-- Stripe card element required -->
-                        <div class="mb-3" id="card-element"></div>
-                        <!-- Element to display form errors -->
-                        <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
-                    </fieldset>
-                    </div>
-                    <div class="col-12 col-md-6">
-                    <fieldset class="mb-4">
-                        <legend class="fieldset-label mb-0 w-auto">Address</legend>
-                        {{ checkout_form.street_address1 | as_crispy_field }}
-                        {{ checkout_form.street_address2 | as_crispy_field }}
-                        {{ checkout_form.town_or_city | as_crispy_field }}
-                        {{ checkout_form.county | as_crispy_field }}
-                        {{ checkout_form.postcode | as_crispy_field }}
-                        {{ checkout_form.country | as_crispy_field }}
                         <div class="form-check mt-3 mr-0">
 							<!-- {% if user.is_authenticated %} -->
-								<label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
+								<label class="form-check-label" for="id-save-info">Save this information to my profile</label>
                                 <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
 
                                 <label class="form-check-label" for="id-save-info">
@@ -88,13 +70,37 @@
 						</div>
                     </fieldset>
                     </div>
+                    <div class="col-12 col-md-6">
+                    <fieldset class="mb-4 mb-md-0">
+                        <legend class="fieldset-label mb-0 w-auto">Address</legend>
+                        {{ checkout_form.street_address1 | as_crispy_field }}
+                        {{ checkout_form.street_address2 | as_crispy_field }}
+                        {{ checkout_form.town_or_city | as_crispy_field }}
+                        {{ checkout_form.county | as_crispy_field }}
+                        {{ checkout_form.postcode | as_crispy_field }}
+                        {{ checkout_form.country | as_crispy_field }}
+                    </fieldset>
                     </div>
-
+                    </div>
+                    <fieldset class="mb-4">
+                        <legend class="fieldset-label w-auto mb-2">Credit Card Info</legend>
+                        <!-- Stripe card element required -->
+                        <div class="mb-3" id="card-element"></div>
+                        <!-- Element to display form errors -->
+                        <div class="mb-3" id="card-errors" role="alert"></div>
+                    </fieldset>
                     <div class="checout-buttons">       
                         <a href="{% url 'add_custom_to_cart' %}" class="btn btn-black border-white">Adjust Cart</a>             
 						<button id="payment-button" class="btn btn-white">Complete Payment</span>
 						</button>
 					</div>
+                    <div id="loading-overlay">
+                        <h1 class="loading-spinner">
+                            <span class="icon">
+                                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                            </span>
+                        </h1>
+                    </div>
                 </form>
             </div>
         </div>
@@ -108,4 +114,10 @@
     {% endif %}
 </section>
 
+{% endblock %}
+
+{% block body_js %}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    {{ block.super }}
 {% endblock %}

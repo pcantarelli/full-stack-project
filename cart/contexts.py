@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from doodles.models import Doodles
+from custom.models import CustomWorkType, CustomSizes, CustomersFiles
 
 def cart_items(request):
 
@@ -7,12 +8,8 @@ def cart_items(request):
     cart_price_total = 0
     cart_items_count = 0
     cart = request.session.get('cart', {})
-    print('cart')
-    print(cart)
 
     for item_id, item_data in cart.items():
-        print('item_id')
-        print(item_id)
         if item_data['product_type'] == 'doodle':
             item_obj = get_object_or_404(Doodles, pk=item_id)
             cart_price_total += float(item_obj.price)
@@ -22,22 +19,17 @@ def cart_items(request):
                 'item_obj': item_obj,
             })
         elif item_data['product_type'] == 'custom':
-            print('item_data')
-            print(item_data)
-            print('custom_total_price')
-            print(item_data['custom_total_price'])
-            print('type of custom_total_price')
-            print(type(item_data['custom_total_price']))
             cart_price_total += item_data['custom_total_price']
+            work_type = get_object_or_404(CustomWorkType, work_type=item_data['work_type'])
+            item_data['work_type_id'] = work_type.id
             cart_items_count += 1
             cart_items.append({
                 'item_id': item_id,
                 'item_obj': item_data,
             })
 
-    print('cart_items')
-    print(cart_items)
-
+    print('cart')
+    print(cart)
 
     context = { 
         'cart_items': cart_items,

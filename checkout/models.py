@@ -22,7 +22,7 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    original_bag = models.TextField(null=False, blank=False, default='')
+    original_cart = models.TextField(null=False, blank=False, default='')
     order_total = models.DecimalField(max_digits=10, decimal_places=2,null=False, default=0)
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
@@ -53,7 +53,7 @@ class Order(models.Model):
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
-    product_type = models.CharField(max_length=32, null=False, blank=False, editable=False)
+    product_type = models.CharField(max_length=32, null=False, blank=False)
     doodle = models.ForeignKey(Doodles, null=True, blank=True, on_delete=models.CASCADE)
     work_type = models.ForeignKey(CustomWorkType, null=True, blank=True, on_delete=models.CASCADE)
     customer_file = models.ForeignKey(CustomersFiles, null=True, blank=True, on_delete=models.CASCADE)

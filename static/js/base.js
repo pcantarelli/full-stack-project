@@ -60,7 +60,7 @@ form.addEventListener('submit', function(ev) {
     card.update({ 'disabled': true});
     $('#payment-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
-    $('#loading-overlay').fadeToggle(100);
+//     $('#loading-overlay').fadeToggle(100);
 
     var saveInfo = Boolean($('#save-info').attr('checked'));
     // From using {% csrf_token %} in the form

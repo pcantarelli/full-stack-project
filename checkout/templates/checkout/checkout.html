@@ -92,20 +92,20 @@
                     </fieldset>
                     <div class="checout-buttons">       
                         <a href="{% url 'add_custom_to_cart' %}" class="btn btn-black border-white">Adjust Cart</a>
-                        <div class="checkout-btn__container">
-                            <div id="loading-overlay">
-                                <div class="loading-spinner">
-                                    <span class="icon">
-                                        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
-                                    </span>
-                                </div>
-                            </div>             
+                        <div class="checkout-btn__container">         
                             <button id="payment-button" class="btn btn-white">Complete Payment</span>
                         </div>
 						</button>
 					</div>
                 </form>
             </div>
+            <div id="loading-overlay">
+                <h1 class="loading-spinner">
+                    <span class="loading-icon">
+                        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                    </span>
+                </h1>
+            </div>   
         </div>
     </div>
     {% else %}

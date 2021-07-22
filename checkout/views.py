@@ -82,8 +82,8 @@ def checkout(request):
     else:
 
         if not cart:
-            messages.error('No items on your cart yet')
-            return redirect(reverse('/'))
+            messages.error(request, 'No items on your cart yet')
+            return redirect("/")
 
         checkout_form = CheckoutForm()
         template = 'checkout/checkout.html'

@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 
 // Stripe
-var stripePublicKey = $('#id_stripe_public_key').text();
+var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
@@ -102,7 +102,6 @@ form.addEventListener('submit', function(ev) {
                 }
             },
         }).then(function(result) {
-            console.log("then initiated")
             if (result.error) {
                 console.log("then error")
                 console.log("result.error.messager")
@@ -118,7 +117,6 @@ form.addEventListener('submit', function(ev) {
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
-                console.log("then ok")
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
                     console.log("form submited")
@@ -126,7 +124,7 @@ form.addEventListener('submit', function(ev) {
             }
         });
     }).fail(function () {
-        console.log("fail")
         // just reload the page, the error will be in django messages
+        location.reload();
     })
 });

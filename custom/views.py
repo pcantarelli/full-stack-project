@@ -10,8 +10,8 @@ def custom(request):
 
     work_types = CustomWorkType.objects.all()
     sizes = CustomSizes.objects.all()
-    size_max = sizes.order_by('-size').first()
-    size_min = sizes.order_by('size').first()
+    size_max = sizes.order_by('-size').first() # Remove?
+    size_min = sizes.order_by('size').first() # Remove?
     doodles = Doodles.objects.all()
     doodles = doodles.order_by('-updated_at')[:4]
 
@@ -19,8 +19,8 @@ def custom(request):
     context = {
         'work_types': work_types,
         'sizes': sizes,
-        'size_max': size_max,
-        'size_min': size_min,
+        'size_max': size_max, # Remove?
+        'size_min': size_min, # Remove?
         'doodles': doodles,
     }
 

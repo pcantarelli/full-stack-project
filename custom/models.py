@@ -33,6 +33,8 @@ class CustomersFiles(models.Model):
 
     customer_file = models.FileField(upload_to='custom/customers_files', null=True, blank=True)
     customer_file_url = models.URLField(max_length=1024, null=True, blank=True)  
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
     def __str__(self):

@@ -4,8 +4,32 @@
 {% block page_content %}
 
 <section class="checkout-section container-xxl index-section mt-4">
-    Order Confirmed
+    <div class="row">
+        <div class="col pt-5">
+            <div class="row  mb-5">
+                <div class="col ps-3">
+                    <h2>Congrats! Order Confirmed</h2>
+                </div>
+            </div>
+            <div class="row mb-4 p-1 mx-1 border-black">
+                <div class="col-12">
+                    <div class="row my-5 mx-3">
+                        <p> Hi <strong> {{ order.full_name.split.0 }}</strong>, excited for the new tatto? Me too.</p>
+                        <p>We will get in touch with you though the email <strong>{{ order.email }}</strong> to arrange the appointmente
+                            date and discuss any other details you might be interested.</p>
+                        <p>Feel free to contact us in case you have any further questions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 </section>
 
+<section class="doodles-section container-xxl index-section">
+    <h1 class="m-auto">Feeling another one?</h1>
+    <div class="doodle-cards">
+        {% for doodle in doodles|slice:":4" %}
+        {% include 'includes/card.html' %}
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}
-

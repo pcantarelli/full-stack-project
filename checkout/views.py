@@ -115,7 +115,8 @@ def order_confirmed(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
-
+    doodles = Doodles.objects.all()
+    doodles = doodles.order_by('-updated_at')[:4]
 
     messages.success(request, f'Order processed successfully! \
         New tattoo on the way')
@@ -126,6 +127,7 @@ def order_confirmed(request, order_number):
     template = 'checkout/order_confirmed.html'
     context = {
         'order': order,
+        'doodles': doodles,
     }
 
     return render(request, template, context)

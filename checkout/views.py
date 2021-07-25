@@ -20,9 +20,10 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('bag', {})),
+            'cart': json.dumps(request.session.get('cart', {})),
         })
         return HttpResponse(status=200)
+
     except Exception as e:
         messages.error(request, ('Sorry, your payment cannot be '
                                  'processed right now. Please try '
@@ -69,11 +70,7 @@ def checkout(request):
                         )
                         order_line_item.save()
                     elif item_data['product_type'] == 'custom':
-                        print('work_type_id')
-                        print(item_data['work_type_id'])
-                        work_type = CustomWorkType.objects.get(id=item_data['work_type_id'])  
-                        print('work_type')    
-                        print(work_type)                     
+                        work_type = CustomWorkType.objects.get(id=item_data['work_type_id'])                     
                         customer_file = CustomersFiles.objects.get(id=item_data['customer_file_id'])                       
                         order_line_item = OrderLineItem(
                             order=order,

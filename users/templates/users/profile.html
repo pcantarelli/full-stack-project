@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+
+
+<section class="cart-section container-xxl index-section mt-5 border-black">
+<h1>Profile</h1>
+</section>
+
+<section class="doodles-section container-xxl index-section">
+    <h1 class="m-auto">What about another one?</h1>
+    <div class="doodle-cards">
+        {% for doodle in doodles|slice:":4" %}
+        {% include 'includes/card.html' %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

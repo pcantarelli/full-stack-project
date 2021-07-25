@@ -28,6 +28,8 @@ class Order(models.Model):
     original_cart = models.TextField(null=False, blank=False, default='')
     order_total = models.DecimalField(max_digits=10, decimal_places=2,null=False, default=0)
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def _generate_order_number(self):
         """
@@ -62,6 +64,8 @@ class OrderLineItem(models.Model):
     customer_file = models.ForeignKey(CustomersFiles, null=True, blank=True, on_delete=models.CASCADE)
     size = models.PositiveSmallIntegerField(null=True, blank=True)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'Line item id: {self.id} from order: {self.order.order_number}'

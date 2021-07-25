@@ -13,6 +13,9 @@ from cart.contexts import cart_items
 from .models import Order, OrderLineItem
 from doodles.models import Doodles
 from custom.models import CustomWorkType, CustomSizes, CustomersFiles
+from users.models import UserProfile
+from users.forms import ProfileForm
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -21,6 +24,8 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'cart': json.dumps(request.session.get('cart', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
         })
         return HttpResponse(status=200)
 
@@ -92,7 +97,6 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('order_confirmed', args=[order.order_number]))
     else:
-
         if not cart:
             messages.error(request, 'No items on your cart yet')
             return redirect("/")
@@ -108,9 +112,33 @@ def checkout(request):
                 amount=stripe_total,
                 currency=settings.STRIPE_CURRENCY,
             )
+        
+        # Attempt to prefill the form with any info
+        # the user maintains in their profile
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                checkout_form = CheckoutForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'postcode': profile.default_postcode,
+                    'town_or_city': profile.default_town_or_city,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'county': profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                checkout_form = CheckoutForm()
+        else:
+            checkout_form = CheckoutForm()
+
 
     if not stripe_public_key:
         messages.warning(request, ('Stripe public key not found.'))
+
+    
 
     context = {
         'checkout_form': checkout_form,
@@ -129,6 +157,27 @@ def order_confirmed(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     doodles = Doodles.objects.all()
     doodles = doodles.order_by('-updated_at')[:4]
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        # Attach the user's profile to the order
+        order.user_profile = profile
+        order.save()
+
+        # Save the user's info
+        if save_info:
+            profile_data = {
+                'default_phone_number': order.phone_number,
+                'default_country': order.country,
+                'default_postcode': order.postcode,
+                'default_town_or_city': order.town_or_city,
+                'default_street_address1': order.street_address1,
+                'default_street_address2': order.street_address2,
+                'default_county': order.county,
+            }
+            user_profile_form = ProfileForm(profile_data, instance=profile)
+            if user_profile_form.is_valid():
+                user_profile_form.save()
 
     messages.success(request, f'Order processed successfully! \
         New tattoo on the way')

@@ -90,12 +90,11 @@
                         <div class="mb-3" id="card-errors" role="alert"></div>
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
-                    <div class="checout-buttons">       
+                    <div class="buttons-container">       
                         <a href="{% url 'add_custom_to_cart' %}" class="btn btn-black border-white">Adjust Cart</a>
-                        <div class="checkout-btn__container">         
-                            <button id="payment-button" class="btn btn-white">Complete Payment</span>
+                        <div class="payment-btn">         
+                            <button id="payment-button" class="btn btn-white">Complete Payment</button>
                         </div>
-						</button>
 					</div>
                 </form>
             </div>

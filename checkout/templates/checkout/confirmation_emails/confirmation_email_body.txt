@@ -1,0 +1,17 @@
+Hey {{ order.full_name }}!
+
+Thanks for your purchase, I'm looking forward to meet you!
+
+This your order confirmation from Tatzy Tattoo:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date|date:"d M, Y" }}
+Order Total: ${{ order.order_total }}
+
+I'll get in touch to book your session through the phone number provided, {{ order.phone_number }}. In case this number is wrong, please let us know. In case we are not able to contact you by phone, we will try by the email you have provided, {{ order.email }}
+
+In case you have any further questions, please let us know! You can contact us at {{ contact_email }}.
+
+Warm regards,
+
+Tazty Tattoo

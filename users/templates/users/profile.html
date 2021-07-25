@@ -3,8 +3,6 @@
 
 {% block page_content %}
 
-<a href="{% url 'account_logout' %}" class="btn btn-black">Logout</a>
-
 <section class="cart-section container-xxl index-section mt-5 border-black">
     <div class="row">
         <div class="col-md-6 cart-summary p-5">
@@ -15,7 +13,10 @@
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button class="btn btn-white mt-5">Update Information</button>
+                <div class="buttons-container mt-5">
+                    <button class="btn btn-black border-white">Update Information</button>
+                    <div><a href="{% url 'account_logout' %}" class="btn btn-white">Logout</a></div>
+                </div>
             </form>
         </div>
         <div class="col-md-6 py-5">
@@ -25,9 +26,52 @@
                 </div>
             </div>
             <div>
-                {{ oders }}
+                {% if orders %}
+                    {% for order in orders %}
+                        <div class="order-info border-black pt-3 ps-3 pe-3 mb-3">
+                            <div class="order-data">
+                                <p><strong><span>Order Number: </span></strong><span>{{ order.order_number}}</span></p>
+                                <p><strong><span>Date: </span></strong><span>{{ order.date|date:"d M, Y" }}</span></p>
+                                <p><strong><span>Order Total: </span></strong><span>${{ order.order_total }}</span</p> 
+                            </div>
+                            <ul class="list-unstyled">
+                                {% for item in order.lineitems.all %}
+                                    {% if item.product_type == 'custom' %}
+                                        <li class="row align-items-center mb-4 p-1 mx-1 border-black">
+                                            <div class="col-6 col-md-3"><img class="img-fluid" src="/media/custom_front.png">
+                                            </div>
+                                            <div class="col-6 col-md-9">
+                                                <div class="row pe-1">
+                                                    <div class="col-12 col-md-5 cart-item__title">{{ item.work_type }}</div>
+                                                    <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
+                                                        {{ item.size }}cm<sup>2</sup></div>
+                                                    <div class="col-12 col-md-3 my-1">${{ item.lineitem_total }}</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% else %}
+                                        <li class="row align-items-center mb-4 p-1 mx-1 border-black">
+                                            <div class="col-6 col-md-3"><img class="img-fluid"
+                                                    src="/media/{{ item.doodle.image }}">
+                                            </div>
+                                            <div class="col-6 col-md-9">
+                                                <div class="row pe-1">
+                                                    <div class="col-12 col-md-5 cart-item__title">{{ item.doodle.name }}</div>
+                                                    <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
+                                                        {{ item.doodle.size }}cm<sup>2</sup></div>
+                                                    <div class="col-12 col-md-3 my-1">${{ item.doodle.price }}</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="border-black p-3">No orders yet</div>
+                {% endif %}
             </div>
-           
         </div>
     </div>
 </section>

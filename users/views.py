@@ -21,13 +21,25 @@ def profile(request):
 
     form = ProfileForm(instance=profile)
     orders = profile.orders.all()
+    orders = orders.order_by('-updated_at')
+    usar_full_name = profile.user.get_full_name()
+    email = profile.user.email
+
+    print('usar_full_name')
+    print(usar_full_name)
+
+    print('email')
+    print(email)
+
+
 
     template = 'users/profile.html'
     context = {
         'profile': profile,
         'form': form,
         'orders': orders,
-
+        'usar_full_name': usar_full_name,
+        'email': email,
     }
 
     return render(request, template, context)

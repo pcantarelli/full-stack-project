@@ -83,13 +83,11 @@
                 </div>
                 <div class="header-icons text-end">
                     <a class="nav-icons" href="#" id="search-icon" ><i class="fas fa-search"></i></a>
-                    <!-- %  -->
-                    <a class="nav-icons" href="#"><i class="fas fa-user"></i></a>
-                    <!-- <a class="nav-link" href="">Profile</a> -->
-                    <!-- % else % -->
-                    <a class="nav-icons" href="#"><i class="fas fa-user"></i></a>
-                    <!-- <a class="nav-link" href="{% url 'account_login' %}">Login</a> -->
-                    <!-- % endif % -->
+                    {% if request.user.is_authenticated %}
+                        <a class="nav-icons" href="{% url 'profile' %}"><i class="fas fa-user"></i></a>
+                    {% else %}
+                    <a class="nav-icons" href="{% url 'account_login' %}"><i class="fas fa-user"></i></a>
+                    {% endif %}
                     <div class="cart-icon__container">
                         <a class="nav-icons" id="cart-icon" href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i>
                         {% if cart_items %}
@@ -116,18 +114,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <!-- {% if request.user.is_superuser %} -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle management-link" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Management
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Manage Doodles</a></li>
-                                <li><a class="dropdown-item" href="#">Manage Gallery</a></li>
-                            </ul>
-                        </li>
-                        <!-- {% endif %} -->
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle management-link" href="#" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Management
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#">Manage Doodles</a></li>
+                                        <li><a class="dropdown-item" href="#">Manage Gallery</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -161,6 +161,9 @@
     
     <div class="page_content">
         {% block page_content %}
+        {% endblock %}
+
+        {% block content %}
         {% endblock %}
     </div>
  

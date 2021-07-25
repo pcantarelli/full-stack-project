@@ -57,16 +57,16 @@
                         {{ checkout_form.full_name | as_crispy_field }}
                         {{ checkout_form.email | as_crispy_field }}
                         {{ checkout_form.phone_number | as_crispy_field }}
-                        <div class="form-check mt-3 mr-0">
-							<!-- {% if user.is_authenticated %} -->
+                        <div class="form-check mt-3 mr-0 ps-0">
+                            <!-- % if user.is_authenticated % -->
+                                <input class="form-check-input me-3 ms-0" type="checkbox" id="save-info" name="save-info" checked>
 								<label class="form-check-label" for="save-info">Save this information to my profile</label>
-                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="save-info" name="save-info" checked>
-
-                                <label class="form-check-label" for="id-save-info">
+                            <!-- % else % -->
+                                <!-- <label class="form-check-label" for="id-save-info">
                                     <a class="text-info" href="">Create an account</a> or 
                                     <a class="text-info" href="">login</a> to save this information
-                                </label>
-							<!-- {% endif %} -->
+                                </label> -->
+                            <!-- % endif % -->
 						</div>
                     </fieldset>
                     </div>

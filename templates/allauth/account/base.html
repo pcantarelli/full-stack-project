@@ -1,1 +1,14 @@
 {% extends "base.html" %}
+
+{% block page_content %}
+<section class="accounts-section container-xxl mt-5 p-5 border-black">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto">
+            <div class="allauth-form-template-content">
+                {% block template_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

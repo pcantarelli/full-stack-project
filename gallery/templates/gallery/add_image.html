@@ -12,11 +12,7 @@
                 <form method="POST" action="{% url 'add_image' %}" class="form" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
+                        {{ field | as_crispy_field }}
                     {% endfor %}
                     <div class="editor-buttons mt-4">
                         <a class="btn btn-white border-black" href="{% url 'home' %}">Cancel</a>

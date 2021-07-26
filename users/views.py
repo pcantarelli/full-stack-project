@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import UserProfile
 from .forms import ProfileForm
 
 
-# Create your views here.
+@login_required
 def profile(request):
     """ View to display User Profile information"""
 

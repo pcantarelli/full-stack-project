@@ -18,19 +18,10 @@ def profile(request):
             messages.success(request, 'Profile info updated successfully!')
         else:
             messages.error(request, ('Sorry, update failed. Please verify that the form is valid.'))
-
-    form = ProfileForm(instance=profile)
-    orders = profile.orders.all()
-    orders = orders.order_by('-updated_at')
-    usar_full_name = profile.user.get_full_name()
-    email = profile.user.email
-
-    print('usar_full_name')
-    print(usar_full_name)
-
-    print('email')
-    print(email)
-
+    else:
+        form = ProfileForm(instance=profile)
+        orders = profile.orders.all()
+        orders = orders.order_by('-updated_at')
 
 
     template = 'users/profile.html'
@@ -38,8 +29,6 @@ def profile(request):
         'profile': profile,
         'form': form,
         'orders': orders,
-        'usar_full_name': usar_full_name,
-        'email': email,
     }
 
     return render(request, template, context)

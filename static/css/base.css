@@ -340,13 +340,15 @@ footer {
 }
 
 /* Index */
-.index-section>h1 {
+.index-section > h1, 
+.section > h1 {
     font-family: 'Shadows Into Light', cursive;
     font-size: 2.5rem;
 }
 
 @media only screen and (max-width: 992px) {
-    .index-section>h1 {
+    .index-section > h1,
+    .section > h1 {
         font-size: 2rem;
     }
 
@@ -413,7 +415,7 @@ footer {
     }
 }
 
-.doodles-section {
+.doodles-section, .section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -538,6 +540,15 @@ footer {
 .sort-link:active,
 .sort-link:focus {
     color: var(--black);
+}
+
+.card-img-top {
+    max-height: 292px;
+    object-fit: cover;
+}
+
+.card-link + .card-link {
+    margin-left: 0;
 }
 
 /* Doodle page */
@@ -919,4 +930,16 @@ footer {
     display: flex;
     align-items: center;
     gap: .5rem;
+}
+
+
+/* Doodle Management pages */
+.editor-buttons {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+}
+
+input[type="file"] {
+    margin-top: 10px;
 }

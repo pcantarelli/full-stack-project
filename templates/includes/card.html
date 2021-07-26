@@ -1,11 +1,12 @@
-<a href="{% url 'dooddle_page' doodle.id %}" class="card-link">
-    <div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem;">
+    <a href="{% url 'dooddle_page' doodle.id %}" class="card-link">
+
         <img src="/media/{{ doodle.image }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ doodle.name }}</h5>
             <p class="card-price"></p>
             <div class="table-responsive">
-                 <table class="table table-sm table-borderless">
+                <table class="table table-sm table-borderless">
                     <tbody>
                         <tr>
                             <th class="card-price">${{ doodle.price }}</th>
@@ -28,5 +29,11 @@
                 </table>
             </div>
         </div>
-      </div>
-</a>
+    </a>
+    {% if request.user.is_superuser %}
+    <div class="editor-buttons px-3 py-2">
+        <a class="delete-button" href="{% url 'delete_doodle' doodle.id %}">Delete</a>
+        <a class="edit-button" href="{% url 'edit_doodle' doodle.id %}">Edit</a>
+    </div>
+    {% endif %}
+</div>

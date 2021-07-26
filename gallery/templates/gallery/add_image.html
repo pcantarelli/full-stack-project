@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %} 
+
+    <section class="container-xxl section">
+
+        <h1 class="m-auto">Add a new Image</h1>
+
+        <div class="row">
+            <div class="col-md-6 mx-auto px-3">
+                <form method="POST" action="{% url 'add_image' %}" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="editor-buttons mt-4">
+                        <a class="btn btn-white border-black" href="{% url 'home' %}">Cancel</a>
+                        <button class="btn btn-black" type="submit">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+    </section>   
+
+{% endblock %} 

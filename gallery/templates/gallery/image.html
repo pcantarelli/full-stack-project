@@ -8,7 +8,7 @@
 
 
     <div class="img-container">
-        <img src="/media/{{ image.image }}" alt="{{ image.name }}" class="img-full" />
+        <img src="{{ image.image.url }}" alt="{{ image.name }}" class="img-full" />
     </div>
 
     {% if request.user.is_superuser %}

@@ -28,7 +28,7 @@
     <div class="gallery-images">
         {% for image in gallery_images %}
         <a href="{% url 'image' image.id %}" class="index-galery__width">
-            <img src="/media/{{ image.image }}" alt="{{ image.name }}" class="gallery-img" />
+            <img src="{{ image.image.url }}" alt="{{ image.name }}" class="gallery-img" />
         </a>
         {% endfor %}
     </div>

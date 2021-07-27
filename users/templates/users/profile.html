@@ -37,7 +37,7 @@
                                 {% for item in order.lineitems.all %}
                                 {% if item.product_type == 'custom' %}
                                 <li class="row align-items-center mb-4 p-1 mx-1 border-black">
-                                    <div class="col-6 col-md-3"><img class="img-fluid" src="/media/custom_front.png">
+                                    <div class="col-6 col-md-3"><img class="img-fluid" src="{{ MEDIA_URL }}custom_front.png">
                                     </div>
                                     <div class="col-6 col-md-9">
                                         <div class="row pe-1">
@@ -51,7 +51,7 @@
                                 {% else %}
                                 <li class="row align-items-center mb-4 p-1 mx-1 border-black">
                                     <div class="col-6 col-md-3"><img class="img-fluid"
-                                            src="/media/{{ item.doodle.image }}">
+                                            src="{{ item.doodle.image.url }}">
                                     </div>
                                     <div class="col-6 col-md-9">
                                         <div class="row pe-1">

@@ -10,7 +10,7 @@
         {% for image in page_obj %}
         <div class="gallery-item {% if image.height >  image.width%} height-span {% else %} width-span {% endif %}">
             <a href="{% url 'image' image.id %}" class="gallery-link">
-                <img src="/media/{{ image.image }}" alt="{{ image.name }}" class="img-grid" />
+                <img src="{{ image.image.url }}" alt="{{ image.name }}" class="img-grid" />
                 <div class="gallery-body">
                     <h5>{{ image.name }}</h5>
                     <p>{{ image.description }}</p>

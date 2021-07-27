@@ -1,7 +1,6 @@
 <div class="card" style="width: 18rem;">
     <a href="{% url 'dooddle_page' doodle.id %}" class="card-link">
-
-        <img src="/media/{{ doodle.image }}" class="card-img-top" alt="...">
+        <img src="{{ doodle.image.url }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ doodle.name }}</h5>
             <p class="card-price"></p>

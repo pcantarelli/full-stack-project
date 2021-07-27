@@ -14,7 +14,7 @@
             {% for item in cart_items %}
             {% if item.item_obj.product_type %}
             <div class="row align-items-center mb-4 p-1 mx-1 border-black">
-                <div class="col-6 col-md-3"><img class="img-fluid" src="/media/custom_front.png"></div>
+                <div class="col-6 col-md-3"><img class="img-fluid" src="{{ MEDIA_URL }}custom_front.png"></div>
                 <div class="col-6 col-md-9">
                     <div class="row pe-1">
                         <div class="col-12 col-md-5 cart-item__title">{{ item.item_obj.work_type }}</div>
@@ -26,7 +26,7 @@
             </div>
             {% else %}
             <div class="row align-items-center mb-4 p-1 mx-1 border-black">
-                <div class="col-6 col-md-3"><img class="img-fluid" src="/media/{{ item.item_obj.image }}"></div>
+                <div class="col-6 col-md-3"><img class="img-fluid" src="{{ item.item_obj.image.url }}"></div>
                 <div class="col-6 col-md-9">
                     <div class="row pe-1">
                         <div class="col-12 col-md-5 cart-item__title">{{ item.item_obj.name }}</div>

@@ -88,7 +88,9 @@ def add_doodle(request):
     """View to add a new doodle"""
 
     if not request.user.is_superuser:
-        messages.error(request, "Access denied! Only store admin can create a Doodle.")
+        messages.error(
+            request,
+            "Access denied! Only store admin can create a Doodle.")
         return redirect(reverse("home"))
 
     if request.method == "POST":
@@ -99,8 +101,8 @@ def add_doodle(request):
             return redirect(reverse("dooddle_page", args=[doodle.id]))
         else:
             messages.error(
-                request, ("Adding new doodle failed. " "Check if the form is valid.")
-            )
+                request, ("Adding new doodle failed. "
+                          "Check if the form is valid."))
     else:
         form = DoodleForm()
 
@@ -116,7 +118,9 @@ def edit_doodle(request, doodle_id):
     """Edit a doodle in the store"""
 
     if not request.user.is_superuser:
-        messages.error(request, "Access denied! Only store admin can edit a Doodle.")
+        messages.error(
+            request,
+            "Access denied! Only store admin can edit a Doodle.")
         return redirect(reverse("home"))
 
     doodle = get_object_or_404(Doodles, pk=doodle_id)
@@ -129,8 +133,8 @@ def edit_doodle(request, doodle_id):
             return redirect(reverse("dooddle_page", args=[doodle.id]))
         else:
             messages.error(
-                request, ("Editing doodle failed. " "Check if the form is valid.")
-            )
+                request, ("Editing doodle failed. "
+                          "Check if the form is valid."))
     else:
         form = DoodleForm(instance=doodle)
         messages.info(request, f"Editing {doodle.name}")
@@ -148,7 +152,9 @@ def delete_doodle(request, doodle_id):
     """Delete a doodle from the store"""
 
     if not request.user.is_superuser:
-        messages.error(request, "Access denied! Only store admin can delete a Doodle.")
+        messages.error(
+            request,
+            "Access denied! Only store admin can delete a Doodle.")
         return redirect(reverse("home"))
 
     doodle = get_object_or_404(Doodles, pk=doodle_id)

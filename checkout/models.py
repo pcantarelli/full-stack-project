@@ -2,11 +2,10 @@ import uuid
 
 from django.db import models
 from django.db.models import Sum
-from django.conf import settings
 from django_countries.fields import CountryField
 
 from doodles.models import Doodles
-from custom.models import CustomWorkType, CustomSizes, CustomersFiles
+from custom.models import CustomWorkType, CustomersFiles
 from users.models import UserProfile
 
 
@@ -33,7 +32,11 @@ class Order(models.Model):
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0
     )
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default="")
+    stripe_pid = models.CharField(
+        max_length=254,
+        null=False,
+        blank=False,
+        default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -47,9 +50,8 @@ class Order(models.Model):
         """
         Funtion to update the order_total each time a line item is added
         """
-        self.order_total = (
-            self.lineitems.aggregate(Sum("lineitem_total"))["lineitem_total__sum"] or 0
-        )
+        self.order_total = (self.lineitems.aggregate(
+            Sum("lineitem_total"))["lineitem_total__sum"] or 0)
         self.save()
 
     def save(self, *args, **kwargs):
@@ -73,7 +75,11 @@ class OrderLineItem(models.Model):
         related_name="lineitems",
     )
     product_type = models.CharField(max_length=32, null=False, blank=False)
-    doodle = models.ForeignKey(Doodles, null=True, blank=True, on_delete=models.CASCADE)
+    doodle = models.ForeignKey(
+        Doodles,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE)
     work_type = models.ForeignKey(
         CustomWorkType, null=True, blank=True, on_delete=models.CASCADE
     )

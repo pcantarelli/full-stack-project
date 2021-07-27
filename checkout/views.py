@@ -1,7 +1,8 @@
 import stripe
 import json
 
-from django.shortcuts import redirect, render, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    redirect, render, reverse, get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -12,7 +13,7 @@ from cart.contexts import cart_items
 
 from .models import Order, OrderLineItem
 from doodles.models import Doodles
-from custom.models import CustomWorkType, CustomSizes, CustomersFiles
+from custom.models import CustomWorkType, CustomersFiles
 from users.models import UserProfile
 from users.forms import ProfileForm
 
@@ -114,7 +115,10 @@ def checkout(request):
 
             # Save the info to the user's profile if all is well
             request.session["save_info"] = "save-info" in request.POST
-            return redirect(reverse("order_confirmed", args=[order.order_number]))
+            return redirect(
+                reverse(
+                    "order_confirmed", args=[
+                        order.order_number]))
     else:
         if not cart:
             messages.error(request, "No items on your cart yet")
@@ -199,7 +203,7 @@ def order_confirmed(request, order_number):
 
     messages.success(
         request,
-        f"Order processed successfully! \
+        "Order processed successfully! \
         New tattoo on the way",
     )
 

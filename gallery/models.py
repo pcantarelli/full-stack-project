@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class GalleryImages(models.Model):
     class Meta:
         verbose_name_plural = "Gallery images"

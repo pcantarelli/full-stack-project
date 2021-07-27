@@ -40,7 +40,9 @@ def add_image(request):
     """View to add a new image"""
 
     if not request.user.is_superuser:
-        messages.error(request, "Access denied! Only store admin can add an image.")
+        messages.error(
+            request,
+            "Access denied! Only store admin can add an image.")
         return redirect(reverse("home"))
 
     if request.method == "POST":
@@ -51,8 +53,8 @@ def add_image(request):
             return redirect(reverse("image", args=[image.id]))
         else:
             messages.error(
-                request, ("Adding new image failed. " "Check if the form is valid.")
-            )
+                request, ("Adding new image failed. "
+                          "Check if the form is valid."))
     else:
         form = GalleryForm()
 
@@ -71,7 +73,9 @@ def edit_image(request, image_id):
     print(image_id)
 
     if not request.user.is_superuser:
-        messages.error(request, "Access denied! Only store admin can edit a image.")
+        messages.error(
+            request,
+            "Access denied! Only store admin can edit a image.")
         return redirect(reverse("home"))
 
     image = get_object_or_404(GalleryImages, pk=image_id)
@@ -84,8 +88,8 @@ def edit_image(request, image_id):
             return redirect(reverse("image", args=[image.id]))
         else:
             messages.error(
-                request, ("Editing image failed. " "Check if the form is valid.")
-            )
+                request, ("Editing image failed. "
+                          "Check if the form is valid."))
     else:
         form = GalleryForm(instance=image)
         messages.info(request, f"Editing {image.name}")
@@ -110,7 +114,9 @@ def delete_image(request, image_id):
     """Delete a image from the store gallery"""
 
     if not request.user.is_superuser:
-        messages.error(request, "Access denied! Only store admin can delete a image.")
+        messages.error(
+            request,
+            "Access denied! Only store admin can delete a image.")
         return redirect(reverse("home"))
 
     image = get_object_or_404(GalleryImages, pk=image_id)

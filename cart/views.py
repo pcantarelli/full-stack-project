@@ -1,8 +1,7 @@
-import uuid
-from django.shortcuts import redirect, render, HttpResponse, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from doodles.models import Doodles
-from custom.models import CustomWorkType, CustomSizes, CustomersFiles
+from custom.models import CustomersFiles
 
 
 # Create your views here.
@@ -88,7 +87,8 @@ def add_custom_to_cart(request):
     work_type = request.POST.get("work_type")
     size = float(request.POST.get("size"))
     custom_total_price = float(request.POST.get("total_price"))
-    new_customer_file = CustomersFiles(customer_file=request.FILES["user_image"])
+    new_customer_file = CustomersFiles(
+        customer_file=request.FILES["user_image"])
     new_customer_file.save()
     customer_file_id = new_customer_file.id
     cart[item_id] = {
@@ -100,6 +100,6 @@ def add_custom_to_cart(request):
         "custom_total_price": custom_total_price,
     }
     request.session["cart"] = cart
-    messages.success(request, f"Custom tattoo added to your cart")
+    messages.success(request, "Custom tattoo added to your cart")
 
     return redirect("cart")

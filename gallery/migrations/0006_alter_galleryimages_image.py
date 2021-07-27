@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gallery', '0005_alter_galleryimages_options'),
+        ("gallery", "0005_alter_galleryimages_options"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='galleryimages',
-            name='image',
-            field=models.ImageField(height_field='height', upload_to='gallery/', width_field='width'),
+            model_name="galleryimages",
+            name="image",
+            field=models.ImageField(
+                height_field="height", upload_to="gallery/", width_field="width"
+            ),
         ),
     ]

@@ -7,19 +7,21 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('custom', '0006_customersfiles_customer_file_url'),
+        ("custom", "0006_customersfiles_customer_file_url"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customersfiles',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="customersfiles",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='customersfiles',
-            name='updated_at',
+            model_name="customersfiles",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

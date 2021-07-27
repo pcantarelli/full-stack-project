@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('custom', '0005_customersfiles'),
+        ("custom", "0005_customersfiles"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customersfiles',
-            name='customer_file_url',
+            model_name="customersfiles",
+            name="customer_file_url",
             field=models.URLField(blank=True, max_length=1024, null=True),
         ),
     ]

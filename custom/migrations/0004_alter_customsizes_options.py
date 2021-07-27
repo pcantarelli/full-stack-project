@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('custom', '0003_rename_name_customworktype_work_type'),
+        ("custom", "0003_rename_name_customworktype_work_type"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='customsizes',
-            options={'verbose_name_plural': 'Custom sizes'},
+            name="customsizes",
+            options={"verbose_name_plural": "Custom sizes"},
         ),
     ]

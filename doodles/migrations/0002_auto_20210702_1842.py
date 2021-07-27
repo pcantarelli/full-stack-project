@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('doodles', '0001_initial'),
+        ("doodles", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='doodles',
-            options={'verbose_name_plural': 'Doodles'},
+            name="doodles",
+            options={"verbose_name_plural": "Doodles"},
         ),
         migrations.AlterField(
-            model_name='doodles',
-            name='time_to_complete',
+            model_name="doodles",
+            name="time_to_complete",
             field=models.PositiveSmallIntegerField(blank=True, null=True),
         ),
     ]

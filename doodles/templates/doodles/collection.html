@@ -1,28 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_content %} 
+{% block page_content %}
+<section class="doodles-section container-xxl index-section">
+    <h1 class="m-auto">Doodles</h1>
 
-    <section class="doodles-section container-xxl index-section">
+    <div class="sort-container">
+        <ul class="sort-list">
+            <li class="sort-title">Sort by:</li>
+            <li><a href="{% url 'doodles' %}?sort=price&direction=asc" class="sort-link">Price</a></li>
+            <li><a href="{% url 'doodles' %}?sort=name&direction=asc" class="sort-link">Name</a></li>
+            <li><a href="{% url 'doodles' %}?sort=size&direction=asc" class="sort-link">Size</a></li>
+            <li><a href="{% url 'doodles' %}?sort=time_to_complete&direction=asc" class="sort-link">Time</a></li>
+        </ul>
+    </div>
 
-        <h1 class="m-auto">Doodles</h1>
-        <div class="sort-container">
-            <ul class="sort-list">
-                <li class="sort-title">Sort by:</li>
-                <li ><a href="{% url 'doodles' %}?sort=price&direction=asc" class="sort-link">Price</a></li>
-                <li ><a href="{% url 'doodles' %}?sort=name&direction=asc" class="sort-link">Name</a></li>
-                <li ><a href="{% url 'doodles' %}?sort=size&direction=asc" class="sort-link">Size</a></li>
-                <li ><a href="{% url 'doodles' %}?sort=time_to_complete&direction=asc" class="sort-link">Time</a></li>
-            </ul>
-        </div>
-        <div class="doodle-cards">
-            {% for doodle in page_obj %}
-                {% include 'includes/card.html' %}
-            {% endfor %}
-        </div>
-
-        {% include 'includes/pagination.html' %}
+    <div class="doodle-cards">
+        {% for doodle in page_obj %}
+        {% include 'includes/card.html' %}
+        {% endfor %}
+    </div>
     
-    </section>   
-
-{% endblock %} 
+    {% include 'includes/pagination.html' %}
+</section>
+{% endblock %}

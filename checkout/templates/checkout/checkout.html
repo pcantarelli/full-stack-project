@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block page_content %}
-
 <section class="checkout-section container-xxl index-section mt-4">
     {% if cart_items %}
     <div class="row">
@@ -13,31 +12,31 @@
                 </div>
             </div>
             {% for item in cart_items %}
-                {% if item.item_obj.product_type %}
-                <div class="row align-items-center mb-4 p-1 mx-1 border-black">
-                    <div class="col-6 col-md-3"><img class="img-fluid" src="/media/custom_front.png"></div>
-                    <div class="col-6 col-md-9">
-                        <div class="row pe-1">
-                            <div class="col-12 col-md-5 cart-item__title">{{ item.item_obj.work_type }}</div>
-                            <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
-                                {{ item.item_obj.size }}cm<sup>2</sup></div>
-                            <div class="col-12 col-md-3 my-1">${{ item.item_obj.custom_total_price }}</div>
-                        </div>
+            {% if item.item_obj.product_type %}
+            <div class="row align-items-center mb-4 p-1 mx-1 border-black">
+                <div class="col-6 col-md-3"><img class="img-fluid" src="/media/custom_front.png"></div>
+                <div class="col-6 col-md-9">
+                    <div class="row pe-1">
+                        <div class="col-12 col-md-5 cart-item__title">{{ item.item_obj.work_type }}</div>
+                        <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
+                            {{ item.item_obj.size }}cm<sup>2</sup></div>
+                        <div class="col-12 col-md-3 my-1">${{ item.item_obj.custom_total_price }}</div>
                     </div>
                 </div>
-                {% else %}
-                <div class="row align-items-center mb-4 p-1 mx-1 border-black">
-                    <div class="col-6 col-md-3"><img class="img-fluid" src="/media/{{ item.item_obj.image }}"></div>
-                    <div class="col-6 col-md-9">
-                        <div class="row pe-1">
-                            <div class="col-12 col-md-5 cart-item__title">{{ item.item_obj.name }}</div>
-                            <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
-                                {{ item.item_obj.size }}cm<sup>2</sup></div>
-                            <div class="col-12 col-md-3 my-1">${{ item.item_obj.price }}</div>
-                        </div>
+            </div>
+            {% else %}
+            <div class="row align-items-center mb-4 p-1 mx-1 border-black">
+                <div class="col-6 col-md-3"><img class="img-fluid" src="/media/{{ item.item_obj.image }}"></div>
+                <div class="col-6 col-md-9">
+                    <div class="row pe-1">
+                        <div class="col-12 col-md-5 cart-item__title">{{ item.item_obj.name }}</div>
+                        <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
+                            {{ item.item_obj.size }}cm<sup>2</sup></div>
+                        <div class="col-12 col-md-3 my-1">${{ item.item_obj.price }}</div>
                     </div>
                 </div>
-                {% endif %}
+            </div>
+            {% endif %}
             {% endfor %}
             <div class="row mb-4 p-1 mx-1 border-black">
                 <h4 class="checkout-total w-100 text-end mt-2">Total: $ {{ cart_price_total }} </h4>
@@ -51,36 +50,38 @@
                 <form action="" method="POST" id="checkout-form">
                     {% csrf_token %}
                     <div class="row">
-                    <div class="col-12 col-md-6 pe-md-4">
-                    <fieldset class="mb-md-4">
-                        <legend class="fieldset-label w-auto">Details</legend>
-                        {{ checkout_form.full_name | as_crispy_field }}
-                        {{ checkout_form.email | as_crispy_field }}
-                        {{ checkout_form.phone_number | as_crispy_field }}
-                        <div class="form-check mt-3 mr-0 ps-0">
-                            {% if user.is_authenticated %}
-                                <input class="form-check-input me-3 ms-0" type="checkbox" id="save-info" name="save-info" checked>
-								<label class="form-check-label" for="save-info">Save this information to my profile</label>
-                            {% else %}
-                                <label class="form-check-label" for="id-save-info">
-                                    <a class="text-info" href="">Create an account</a> or 
-                                    <a class="text-info" href="">login</a> to save this information
-                                </label>
-                            {% endif %}
-						</div>
-                    </fieldset>
-                    </div>
-                    <div class="col-12 col-md-6">
-                    <fieldset class="mb-4 mb-md-0">
-                        <legend class="fieldset-label mb-0 w-auto">Address</legend>
-                        {{ checkout_form.street_address1 | as_crispy_field }}
-                        {{ checkout_form.street_address2 | as_crispy_field }}
-                        {{ checkout_form.town_or_city | as_crispy_field }}
-                        {{ checkout_form.county | as_crispy_field }}
-                        {{ checkout_form.postcode | as_crispy_field }}
-                        {{ checkout_form.country | as_crispy_field }}
-                    </fieldset>
-                    </div>
+                        <div class="col-12 col-md-6 pe-md-4">
+                            <fieldset class="mb-md-4">
+                                <legend class="fieldset-label w-auto">Details</legend>
+                                {{ checkout_form.full_name | as_crispy_field }}
+                                {{ checkout_form.email | as_crispy_field }}
+                                {{ checkout_form.phone_number | as_crispy_field }}
+                                <div class="form-check mt-3 mr-0 ps-0">
+                                    {% if user.is_authenticated %}
+                                    <input class="form-check-input me-3 ms-0" type="checkbox" id="save-info"
+                                        name="save-info" checked>
+                                    <label class="form-check-label" for="save-info">Save this information to my
+                                        profile</label>
+                                    {% else %}
+                                    <label class="form-check-label" for="id-save-info">
+                                        <a class="text-info" href="">Create an account</a> or
+                                        <a class="text-info" href="">login</a> to save this information
+                                    </label>
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <fieldset class="mb-4 mb-md-0">
+                                <legend class="fieldset-label mb-0 w-auto">Address</legend>
+                                {{ checkout_form.street_address1 | as_crispy_field }}
+                                {{ checkout_form.street_address2 | as_crispy_field }}
+                                {{ checkout_form.town_or_city | as_crispy_field }}
+                                {{ checkout_form.county | as_crispy_field }}
+                                {{ checkout_form.postcode | as_crispy_field }}
+                                {{ checkout_form.country | as_crispy_field }}
+                            </fieldset>
+                        </div>
                     </div>
                     <fieldset class="mb-4">
                         <legend class="fieldset-label w-auto mb-2">Credit Card Info</legend>
@@ -90,12 +91,12 @@
                         <div class="mb-3" id="card-errors" role="alert"></div>
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
-                    <div class="buttons-container">       
+                    <div class="buttons-container">
                         <a href="{% url 'add_custom_to_cart' %}" class="btn btn-black border-white">Adjust Cart</a>
-                        <div class="payment-btn">         
+                        <div class="payment-btn">
                             <button id="payment-button" class="btn btn-white">Complete Payment</button>
                         </div>
-					</div>
+                    </div>
                 </form>
             </div>
             <div id="loading-overlay">
@@ -104,7 +105,7 @@
                         <i class="fas fa-3x fa-sync-alt fa-spin"></i>
                     </span>
                 </h1>
-            </div>   
+            </div>
         </div>
     </div>
     {% else %}
@@ -119,7 +120,8 @@
 {% endblock %}
 
 {% block body_js %}
+    {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
-    {{ block.super }}
+    <script src="{% static 'checkout/js/stripe.js' %}"></script>
 {% endblock %}

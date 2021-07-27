@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from doodles.models import Doodles
-from custom.models import CustomWorkType, CustomSizes, CustomersFiles
+from custom.models import CustomWorkType
 
 def cart_items(request):
 
@@ -27,9 +27,6 @@ def cart_items(request):
                 'item_id': item_id,
                 'item_obj': item_data,
             })
-
-    print('cart')
-    print(cart)
 
     context = { 
         'cart_items': cart_items,

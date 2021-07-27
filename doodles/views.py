@@ -23,7 +23,6 @@ def doodles_collection(request):
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
-            print(sortkey)
             sort = sortkey
             if sortkey == 'name':
                 sortkey = 'lower_name'
@@ -32,19 +31,18 @@ def doodles_collection(request):
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
-            print(sortkey)
             doodles = doodles.order_by(sortkey)
 
     sorting = f'{sort}_{direction}'
     paginator = Paginator(doodles, 8) # Show 8 images per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
     context = {
         'doodles': doodles,
         'sorting': sorting,
         'page_obj': page_obj
     }
-
     return render (request, 'doodles/collection.html', context)
 
 
@@ -53,17 +51,12 @@ def dooddle_page(request, doodle_id):
 
     doodle_product = get_object_or_404(Doodles, pk=doodle_id)
     doodles = Doodles.objects.all()
-
-    # Exclude doodle product from doodles recomended list
-    doodles = doodles.exclude(id__in=[doodle_id])
-
-    
+    doodles = doodles.exclude(id__in=[doodle_id]) # Exclude doodle product from doodles recomended list
 
     context = {
         'doodle_product': doodle_product,
         'doodles': doodles,
     }
-
     return render(request, 'doodles/dooddle_page.html', context)
 
 
@@ -89,12 +82,12 @@ def doodles_search(request):
         'doodles': doodles,
         'query': query,
     }
-
     return render (request, 'doodles/doodles_search.html', context)
 
 @login_required
 def add_doodle(request):
     """ View to add a new doodle """
+
     if not request.user.is_superuser:
         messages.error(request, 'Access denied! Only store admin can create a Doodle.')
         return redirect(reverse('home'))
@@ -116,18 +109,19 @@ def add_doodle(request):
     context = {
         'form': form,
     }
-
     return render(request, template, context)
 
 
 @login_required
 def edit_doodle(request, doodle_id):
     """ Edit a doodle in the store """
+
     if not request.user.is_superuser:
         messages.error(request, 'Access denied! Only store admin can edit a Doodle.')
         return redirect(reverse('home'))
 
     doodle = get_object_or_404(Doodles, pk=doodle_id)
+    
     if request.method == 'POST':
         form = DoodleForm(request.POST, request.FILES, instance=doodle)
         if form.is_valid():
@@ -147,13 +141,13 @@ def edit_doodle(request, doodle_id):
         'form': form,
         'doodle': doodle,
     }
-
     return render(request, template, context)
 
 
 @login_required
 def delete_doodle(request, doodle_id):
     """ Delete a doodle from the store """
+
     if not request.user.is_superuser:
         messages.error(request, 'Access denied! Only store admin can delete a Doodle.')
         return redirect(reverse('home'))
@@ -161,4 +155,5 @@ def delete_doodle(request, doodle_id):
     doodle = get_object_or_404(Doodles, pk=doodle_id)
     doodle.delete()
     messages.success(request, 'Doodle deleted!')
+    
     return redirect(reverse('doodles'))

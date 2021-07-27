@@ -24,12 +24,10 @@ def profile(request):
         orders = profile.orders.all()
         orders = orders.order_by('-updated_at')
 
-
     template = 'users/profile.html'
     context = {
         'profile': profile,
         'form': form,
         'orders': orders,
     }
-
     return render(request, template, context)

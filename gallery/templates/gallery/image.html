@@ -2,12 +2,7 @@
 {% load static %}
 
 {% block page_content %}
-
-
-
-
 <section class="image-page container-xxl index-section">
-
     <h1 class="text-center mt-2">{{ image.name }}</h1>
     <p class="text-center mb-4">{{ image.description }}</p>
 
@@ -25,9 +20,5 @@
     {% else %}
     <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-black" class>Back</a>
     {% endif %}
-
 </section>
-
-
 {% endblock %}
-

@@ -34,6 +34,7 @@ def add_to_cart(request, item_id):
     """
     Function to add products to cart object
     """
+
     doodle = get_object_or_404(Doodles, pk=item_id)
     cart = request.session.get('cart', {})
     cart[item_id] = {
@@ -72,10 +73,11 @@ def add_custom_to_cart(request):
     """
     Function to add custom product to cart object
     """
+    
     cart = request.session.get('cart', {})
-    # Check how many custom products are in the cart
     total_custom_on_cart = 0
-    for item_id, item_data in cart.items():
+
+    for item_id, item_data in cart.items(): # Check how many custom products are in the cart
         if item_data['product_type'] == 'custom':
             total_custom_on_cart += 1
 
@@ -86,7 +88,6 @@ def add_custom_to_cart(request):
     new_customer_file = CustomersFiles(customer_file=request.FILES['user_image'])
     new_customer_file.save()
     customer_file_id = new_customer_file.id
-
     cart[item_id] = {
         'product_type': 'custom',
         'work_type': work_type,
@@ -95,7 +96,6 @@ def add_custom_to_cart(request):
         'customer_file_id': customer_file_id,
         'custom_total_price': custom_total_price,
         }
-    
     request.session['cart'] = cart
     messages.success(request, f'Custom tattoo added to your cart')
 

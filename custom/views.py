@@ -8,20 +8,14 @@ from doodles.models import Doodles
 def custom(request):
     """ A view to show individual doodle product page """
 
-    work_types = CustomWorkType.objects.all()
-    sizes = CustomSizes.objects.all()
-    size_max = sizes.order_by('-size').first() # Remove?
-    size_min = sizes.order_by('size').first() # Remove?
+    work_types = CustomWorkType.objects.all().order_by('price_type')
+    sizes = CustomSizes.objects.all().order_by('price_size')
     doodles = Doodles.objects.all()
     doodles = doodles.order_by('-updated_at')[:4]
-
 
     context = {
         'work_types': work_types,
         'sizes': sizes,
-        'size_max': size_max, # Remove?
-        'size_min': size_min, # Remove?
         'doodles': doodles,
     }
-
     return render(request, 'custom/custom.html', context)

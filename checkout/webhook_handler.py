@@ -5,7 +5,7 @@ from django.conf import settings
 
 from .models import Order, OrderLineItem
 from doodles.models import Doodles
-from custom.models import CustomWorkType, CustomSizes, CustomersFiles
+from custom.models import CustomWorkType, CustomersFiles
 from users.models import UserProfile
 
 import json
@@ -47,8 +47,6 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        print('handle_payment_intent_succeeded initiated')
-
         intent = event.data.object
         pid = intent.id
         cart = intent.metadata.cart
@@ -82,8 +80,6 @@ class StripeWH_Handler:
         order_exists = False
         attempt = 1
         while attempt <= 5:
-            print('attempt')
-            print(attempt)
             try:
                 order = Order.objects.get(
                     full_name__iexact=shipping_details.name,
@@ -113,7 +109,6 @@ class StripeWH_Handler:
                 status=200)
         else:
             order = None
-            print('trying to create Order')
             try:
                 order = Order.objects.create(
                     full_name=shipping_details.name,
@@ -152,15 +147,12 @@ class StripeWH_Handler:
                         )
                         order_line_item.save()
             except Exception as e:
-                print('Exception')
-                print(e)
                 if order:
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
-        print('Order created through webhook')
         return HttpResponse(
             content=(f'Webhook received: {event["type"]} | SUCCESS: '
                      'Created order in webhook'),

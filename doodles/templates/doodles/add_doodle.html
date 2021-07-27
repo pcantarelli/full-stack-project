@@ -4,7 +4,6 @@
 {% block page_content %}
 
 <section class="section container-xxl">
-
     <h1 class="m-auto">Add a new Doodle</h1>
 
     <div class="row">
@@ -12,7 +11,7 @@
             <form method="POST" action="{% url 'add_doodle' %}" class="form" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                    {{ field | as_crispy_field }}
+                {{ field | as_crispy_field }}
                 {% endfor %}
                 <div class="editor-buttons mt-4">
                     <a class="btn btn-white border-black" href="{% url 'home' %}">Cancel</a>
@@ -21,7 +20,5 @@
             </form>
         </div>
     </div>
-
 </section>
-
 {% endblock %}

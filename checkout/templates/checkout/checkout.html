@@ -60,12 +60,12 @@
                                     {% if user.is_authenticated %}
                                     <input class="form-check-input me-3 ms-0" type="checkbox" id="save-info"
                                         name="save-info" checked>
-                                    <label class="form-check-label" for="save-info">Save this information to my
+                                    <label class="form-check-label" id="account-checkbox" for="save-info">Save this information to my
                                         profile</label>
                                     {% else %}
-                                    <label class="form-check-label" for="id-save-info">
-                                        <a class="text-info" href="">Create an account</a> or
-                                        <a class="text-info" href="">login</a> to save this information
+                                    <label class="form-check-label mb-3" for="id-save-info">
+                                        <a href="{% url 'account_signup' %}" class="link-white">Create an account</a> or
+                                        <a href="{% url 'account_login' %}" class="link-white">login</a> to save this information
                                     </label>
                                     {% endif %}
                                 </div>

@@ -24,3 +24,8 @@ class DoodleForm(forms.ModelForm):
         for field in self.fields:
             label = labels[field]
             self.fields[field].label = label
+
+            if field == "image_url":
+                self.fields[field].label = False
+                self.fields[field].widget.attrs["class"] = "hide"
+            

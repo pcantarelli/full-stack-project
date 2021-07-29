@@ -3,9 +3,6 @@ from doodles.models import Doodles
 from gallery.models import GalleryImages
 
 
-# Create your views here.
-
-
 def index(request):
     """
     Function to return a view of the index page

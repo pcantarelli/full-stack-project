@@ -67,10 +67,7 @@ def add_image(request):
 
 @login_required
 def edit_image(request, image_id):
-    """Edit a image in the store gallery"""
-
-    print("image_id")
-    print(image_id)
+    """Edit a image from the store gallery"""
 
     if not request.user.is_superuser:
         messages.error(
@@ -95,12 +92,6 @@ def edit_image(request, image_id):
         messages.info(request, f"Editing {image.name}")
 
     template = "gallery/edit_image.html"
-
-    print("form")
-    print(form)
-
-    print("image")
-    print(image)
 
     context = {
         "form": form,

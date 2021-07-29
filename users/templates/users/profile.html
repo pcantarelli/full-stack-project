@@ -15,7 +15,7 @@
                 {{ form|crispy }}
                 <div class="buttons-container mt-5">
                     <button class="btn btn-black border-white">Update Information</button>
-                    <div><a href="{% url 'account_logout' %}" class="btn btn-white">Logout</a></div>
+                    <div class="logout"><a href="{% url 'account_logout' %}" class="btn btn-white">Logout</a></div>
                 </div>
             </form>
         </div>
@@ -32,46 +32,46 @@
                     <div class="order-data">
                         <p><strong><span>Order Number: </span></strong><span>{{ order.order_number}}</span></p>
                         <p><strong><span>Date: </span></strong><span>{{ order.date|date:"d M, Y" }}</span></p>
-                        <p><strong><span>Order Total: </span></strong><span>${{ order.order_total }}</span</p> </div>
-                                    <ul class="list-unstyled">
-                                {% for item in order.lineitems.all %}
-                                {% if item.product_type == 'custom' %}
-                                <li class="row align-items-center mb-4 p-1 mx-1 border-black">
-                                    <div class="col-6 col-md-3"><img class="img-fluid" src="{{ MEDIA_URL }}custom_front.png">
-                                    </div>
-                                    <div class="col-6 col-md-9">
-                                        <div class="row pe-1">
-                                            <div class="col-12 col-md-5 cart-item__title">{{ item.work_type }}</div>
-                                            <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
-                                                {{ item.size }}cm<sup>2</sup></div>
-                                            <div class="col-12 col-md-3 my-1">${{ item.lineitem_total }}</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                {% else %}
-                                <li class="row align-items-center mb-4 p-1 mx-1 border-black">
-                                    <div class="col-6 col-md-3"><img class="img-fluid"
-                                            src="{{ item.doodle.image.url }}">
-                                    </div>
-                                    <div class="col-6 col-md-9">
-                                        <div class="row pe-1">
-                                            <div class="col-12 col-md-5 cart-item__title">{{ item.doodle.name }}</div>
-                                            <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
-                                                {{ item.doodle.size }}cm<sup>2</sup></div>
-                                            <div class="col-12 col-md-3 my-1">${{ item.doodle.price }}</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                {% endif %}
-                                {% endfor %}
-                                </ul>
+                        <p><strong><span>Order Total: </span></strong><span>${{ order.order_total }}</span></p>
                     </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="border-black p-3">No orders yet</div>
-                    {% endif %}
+                    <ul class="list-unstyled">
+                        {% for item in order.lineitems.all %}
+                        {% if item.product_type == 'custom' %}
+                        <li class="row align-items-center mb-4 p-1 mx-1 border-black">
+                            <div class="col-6 col-md-3"><img class="img-fluid" src="{{ MEDIA_URL }}custom_front.png">
+                            </div>
+                            <div class="col-6 col-md-9">
+                                <div class="row pe-1">
+                                    <div class="col-12 col-md-5 cart-item__title">{{ item.work_type }}</div>
+                                    <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
+                                        {{ item.size }}cm<sup>2</sup></div>
+                                    <div class="col-12 col-md-3 my-1">${{ item.lineitem_total }}</div>
+                                </div>
+                            </div>
+                        </li>
+                        {% else %}
+                        <li class="row align-items-center mb-4 p-1 mx-1 border-black">
+                            <div class="col-6 col-md-3"><img class="img-fluid" src="{{ item.doodle.image.url }}">
+                            </div>
+                            <div class="col-6 col-md-9">
+                                <div class="row pe-1">
+                                    <div class="col-12 col-md-5 cart-item__title">{{ item.doodle.name }}</div>
+                                    <div class="col-12 col-md-4 my-1"><i class="fas fa-ruler-vertical"></i>
+                                        {{ item.doodle.size }}cm<sup>2</sup></div>
+                                    <div class="col-12 col-md-3 my-1">${{ item.doodle.price }}</div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
+            {% endfor %}
+            {% else %}
+            <div class="border-black p-3">No orders yet</div>
+            {% endif %}
         </div>
+    </div>
 </section>
 {% endblock %}

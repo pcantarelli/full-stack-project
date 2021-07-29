@@ -4,7 +4,7 @@ $(document).ready(function () {
     let typePrice = $('input[name=work_type]:checked').attr("data-type-price")
     let sizePrice = parseFloat($('#size').find(":selected").attr("data-size-price"))
     let totalPrice = typePrice * sizePrice;
-    totalPricetoString = `$ ${totalPrice.toFixed(2)}`;
+    let totalPricetoString = `$ ${totalPrice.toFixed(2)}`;
     $('#custom-price').html(totalPricetoString)
     $('#total-price').val(totalPrice)
 

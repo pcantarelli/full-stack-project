@@ -3,7 +3,6 @@ from .models import CustomWorkType, CustomSizes
 from doodles.models import Doodles
 
 
-# Create your views here.
 def custom(request):
     """A view to show individual doodle product page"""
 

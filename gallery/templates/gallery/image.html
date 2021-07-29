@@ -14,11 +14,11 @@
     {% if request.user.is_superuser %}
     <div class="editor-buttons w-100 py-2">
         <a class="delete-button btn btn-white border-black" href="{% url 'delete_image' image.id %}">Delete</a>
-        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-black" class>Back</a>
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-black">Back</a>
         <a class="edit-button btn btn-white border-black" href="{% url 'edit_image' image.id %}">Edit</a>
     </div>
     {% else %}
-    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-black" class>Back</a>
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-black">Back</a>
     {% endif %}
 </section>
 {% endblock %}

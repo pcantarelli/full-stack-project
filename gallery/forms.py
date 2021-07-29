@@ -14,6 +14,7 @@ class GalleryForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         for field in self.fields:
-            if field == "height" or field == "width":
+            if field == "height" or field == "width" or field == "image_url":
                 self.fields[field].label = False
                 self.fields[field].widget.attrs["class"] = "hide"
+

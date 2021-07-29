@@ -8,8 +8,6 @@ from django.core.paginator import Paginator
 from .models import Doodles
 from .forms import DoodleForm
 
-# Create your views here.
-
 
 def doodles_collection(request):
     """

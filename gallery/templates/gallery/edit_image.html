@@ -4,6 +4,7 @@
 {% block page_content %}
 <section class="container-xxl section">
     <h1 class="m-auto">Edit Image Info</h1>
+    
     <div class="row">
         <div class="col-md-6 mx-auto px-3">
             <form method="POST" action="{% url 'edit_image' image.id %}" class="form" enctype="multipart/form-data">

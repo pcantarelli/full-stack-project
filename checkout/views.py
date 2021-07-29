@@ -20,7 +20,7 @@ from users.forms import ProfileForm
 
 @require_POST
 def cache_checkout_data(request):
-    """ """
+    """ Function to cache information for webhook handler"""
 
     try:
         pid = request.POST.get("client_secret").split("_secret")[0]
@@ -47,9 +47,8 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-# Create your views here.
 def checkout(request):
-    """ """
+    """ Function to create the checkout view"""
 
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY

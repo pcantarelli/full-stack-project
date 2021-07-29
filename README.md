@@ -1,15 +1,15 @@
-# **Fitness Exercise Development**
+# **Tatzt Tattoo**
 
 ## **Backend Development Project - Code Institute**
 
 &nbsp;
-![website mockups](documentation/mockups.jpg)
+![website mockups]()
 
-The Fitness Exercise Development (FED) is a website created to save your exercise program info. The idea is that it works as an application that you can access like a website, and the primary focus is on the mobile view (as it will be mainly accessed during a gym session)
+Tazty Tatto is a e-commercer website created to sell custom and pre-designed tattoos from a local Tatoo Artist. The objective of this website help the artist to merchandise his tattoo products and make easier for his customer to buy a tattoo session.
 
-This project is part one of the four milestone projects of the Code Institute Full Stack Developer course and aims to show an interactive website using HTML5, CCS3, and Javascript, using Python and Flask to manage the application backend and MongoDB to store its information.
+This is my final project of the Code Institute Full Stack Developer course, and aims to show an interactive e-commerce website using a full technologie stack, from the Front End to the Back End and Databases. 
 
-Access the website here: [Fitness Exercise Development](http://fitness-exercise-development.herokuapp.com/)
+Access the website here: [Tatzy Tattoo](http://tatzy-tatoo.herokuapp.com/)
 
 &nbsp;
 
@@ -30,44 +30,49 @@ Access the website here: [Fitness Exercise Development](http://fitness-exercise-
 
 ### **Project Goals:**
 
-- Display the exercise program on a single page
-- Create, read, edit and delete exercises through the application website
-- Show User status info
-- Show App status info to Admin
-- Search exercises and be able to add them to your program
+- Display a home page with call to actions to the the products available for purchase, the photos of the last works made by the artist, and his location.
+- Have a product page for customers to buy a custom tattoo, where they can selet the kind or work they want, the size of their tatto and upload a reference image, which calculates automaticaly the price.
+- Merchandise the Artist pre-made tattoo desings, displaying its price, size and time to complete, and where the customer can easly buy it.
+- Hava a User database where merchants can login in the website and have control of their past orders.
+- Have a management area where only the Admin can access to add new Doodle products or images to the Gallery.
+- Hava a cart and checkout, making possible to buy more then one product at once.
 
 ### **User Stories**
 
 #### **New Users:**
 
-- I go to the gym regularly and looking for a way to save my exercise program info, and be able to update it at the gym.
-- I'm a PT and want an application to suggest to my client so he can have the exercise info when I'm not with him.
-- I'm a gym owner looking for an App where my clients can find exercises suggestions
+- I'm looking for a tattoo artist to have a new custom tattoo of a cool desgin my sister drew for me.
+- I want a new tattoo, but I'm out of ideas and would like to check what the tattoo artist have available and ready.
+- I looking for a tattoo artist work, and would like to see his past works so I can be sure that he is the right one for me.
 
 #### **Returning User:**
 
-- I sign up for this application and using regularly. Now I want to change my exercise program, and looking for exercises suggestions
-- I want to update my exercises program info and know its duration
+- I bought a custom tattoo a week ago and would like to check my order information.
+- I got a Doodle tattoo last month and now I'd like to buy a new custom one.
 
 #### **Business Owner:**
 
-- I want to gather exercises information to analyze the gathered information and in the future provided tailored exercises programs
-- I want to have an application status page, so I can understand how many users we have a summary of the saved data.
+- I'm a tattoo artist and would like to make the process to buy a tattoo from me easier
+- I have loads of pre-made designs, and would like to merchandise those Doodles, so my customers can easly find and by them.
+- I need a wesite where I can simply manage the Doodles available, and add my newest works in a image Gallery.
 
 ## **Design Process**
 
 ### **Strategy Plane:**
 
-The main objective of this website is to make it easier for people to access, add and edit their exercise program wherever they are. For that the application is designed mainly focused on mobile users, letting straight forward where to find information and how to edit it. The main page accessed will be the Program page where the user can see their exercise list, as well as the estimated duration to finish it.
+The main objective of this website is to make easier for customer to buy tattoos from this artist, as he does not have anyone working for him to attend those clients. The time he spend negociating tattoo can be much better used tattooing his clients.
+
+For that, the owner decided to request the creationg of a simple and straightforward e-commerce, where his customer can easily buy their tattoos online.
 
 ### **Scope Plane:**
 
 The key features that this project aims to attend are:
 
-- Having a Program page easily accessible through a smartphone where only the necessary info is displayed
-- Provide a tool to edit the exercise program, letting the user add, edit or delete an exercises
-- Show the user status in the application for reference
-- Promote exercises saved in the application by other users through the Search page for inspiration and let the user able to copy it to their own program.
+- A custom tatto page that automaticaly caculate the final price depending on the work type and size
+- A page with the Collection of Doodles available, where the merchant access the Doodle page to buy it.
+- An image Gallery page where customers can see the artist last works.
+- A seemless Cart and Checkout process, where customer can easily buy the website products.
+- A User database where the artist will have his customer information saved in case he needs for a future project, which also provides Login/Sign in sytem on his store.
 
 ### **Skeleton Plane:**
 
@@ -79,93 +84,124 @@ To improve page load speed, it was decided to not add external Font styles in th
 
 ### **Wireframes**:
 
-The project wireframes can be accessed [clicking here](https://www.figma.com/file/n45E2cE93O04XF5NEsHYW7/Untitled?node-id=0%3A1).
+The project wireframes can be accessed [FIXclicking here]().
 
 Mobile:
 
-![wireframe mobile](documentation/fed_wireframe_mobile.jpg)
+![wireframe mobile]()
 
 Tablet / Desktop:
 
-![wireframe tablet and desktop](documentation/fed_wireframe_desktop.jpg)
+![wireframe tablet and desktop]()
 
 ### **Surface Plane:**
 
-As the project aims to simple and fast, it was decided to use some components largely used in the Front End web design nowadays to improve its visuals, such as Aurora effects with gradient colors, Glassmorfism, and Collapsible accordions.
+The desing of this store was created to relate to the artist work, which is minimal, edgy and detailed. The Doodles are displayed on custom product cards, that provides all the important necessary of those products.
 
-The color scheme aims to have a vibrant feeling that stands out and hypes the user for his exercise session while keeping a modern and not distractive visual.
+The color scheme is almost complete black, as the color of the artist ink. It was uses also some shades of grey to smooth some parts, and some whites to let thinks stand out, such as buttons and texts. 
 
 ![collor pallet](documentation/color_scheme.png)
 
-The icons used in the website are from [Font Awesome](https://fontawesome.com/) and were used in the project logo and as a visual reference for each page.
+The icons used in the website are from [Font Awesome](https://fontawesome.com/) and were used in the Header sections and some buttons.
 
-All pages can be easily accessed through the cards on the Home page or through the application navigation menu, which in the mobile view is displayed through a hamburger icon and side menu for the best usage of space.
+All pages can be easily accessed through the Header navigation menu, which in the mobile view is displayed through a hamburger icon and a colappisble menu for the best usage of space. The Custom, Doodles and Gallery pages can be also accessed through the Homepage navigation sections (View more buttons).
 
-In the Program page and Editor, it was used collapsible accordions to don't pollute the page information, and display only the information the user really wants to see. The Search page is provided for users to find exercise inspirations and a button to easily copy the card information to your own Program. Lastly, the profile page shows the user info registered as well as their info status.
+The Search box slides from the top of the page, so it does not take to much space on the store layout. There a customer can search for any term that is on the Doodles product name or descrition. 
 
-The Admin user has access to the App Status page, where he can verify some information from this application project, which can be used for future project upgrades.
+On the Doodles Coolection page the product cards can be reorded by Price, Name, Size or Time to Complete. The Profile page show the customer address information saved, and their last orders.
+
+The Admin user has access management pages, where they can add new Doodles products and images to the Galery. He will also have access to buttons do delete of edit Doodles in the Collection page, or to edit or delete images on their page.
 
 ## **Features**
 
-Through the Header Navigation menu that is common to all pages, the user can access all project features that are displayed on different pages.
+Through the Header Navigation menu that is common to all pages, the user can access all project features that are displayed on different pages. Either by the navigation menu links, or the icons.
 
 ### **Consistent features across all pages:**
 
-- Header section with a responsive menu and logo. The menu can be accessed only by users that logged in to the application.
-- Footer section with project information and social logo.
+- The responsive Header section that has the navigation menu, logo and icons (Search, Profile and Cart)
+- Footer section with project information and social media links. As the idea is to help the artist to save time, it was decided to don't display any contact information or page, as this is preferably done by the owner social accounts.
+- Search box that can be toggled on and off to be visibale and can be used to search Doodles by specifc terms found on their Name or Description.
 
 ### **Home:**
 
-- Four cards where the user can access any of the application's features (Program list, Program Editor, User profile and Search functionality).
-- The Admin user can see the fifth card to access the App Status page.
+- A Hero Banner section with a CTB button suggest to customers to buy a Custom Tattoo.
+- A section with the latest Doodles available uploadeds, and a button to the Doodles Collection page.
+- The Gallery section with the latest work photos uploaded, and a button to the Gallery page.
+- A map showing the location the artist studio.
 
-### **Index:**
+### **Custom:**
 
-- Index page shows a responsive and animated card where users can select either to register in the application or to log in.
+- This page has a generic custom image, and a brief decription about what is the product.
+- It is provided selector to select the work type and size, which has diferent price indexes saved in the model, which is used to calculate and update the custom tattoo price.
+- It also provided a input field to upload the reference image, and all fields are required.
+- An Add to Cart button so the customer can buy this product
+- A Product Recomendation section that display availables Doodles to try to upsell them.
 
-### **Programa:**
+### **Dooodles:**
 
-- On this page users can see all their exercises registered in the application, separated by muscle group. The exercise cards are presented in a collapsible accordion. At the top is displayed an estimated time to complete the whole program.
+- A Collecion page with all Doodles available. For performance pruposes, it is only displayed 8 card per page, and the pagination buttons are displayed at the bottom to access other pages.
+- The Doodles cards have the most important information for customer, such as Price, Size and Time to Complete.
+- For the Admin it is also displayed buttons where it is possible to delete or edit a Doodle.
 
-### **Editor:**
+### **Doodle page:**
 
-- On the Editor page, the user can add a new exercise to their program through a button that links to the Add Exercise page. It is also presented their current exercises card similarly to the Program page, but with two extra buttons to Edit or Delete an exercise.
+- This page displays the Doodle product image, name, description, size and estimated time to complete.
+- An Add to Cart button so the customer can buy this product
+- A Product Recomendation section that display availables Doodles to try to upsell them.
 
-### **Add Exercise:**
+### **Gallery:**
 
-- This page displays a form where the user can add a new exercise to their program. The form is presented with the same card layout from the Program page, so the user can have a better understanding of how the information will be displayed after saved. There is a button to cancel the creation of a new exercise and a button to save it.
+- A Gallery of images that are automaticaly fitted in a Grid desing to be as dense as possible, takeing in cosideration the image width and height to calculate how it will be displayed.
+- On hover, it is possible to see the image name and description
+- For performance pruposes, it is only displayed 9 images per page, and the pagination buttons are displayed at the bottom to access other Gallery pages.
 
-### **Edit Exercise:**
+### **Image page:**
 
-- This page displays the same form and feature of the Add Exercise page, but with the exercise information registered previously by the user that he wants to change.
+- This page displays the image in a bigger format for better visualization.
+- At the top is possible to see the image name and its description.
+- The Admin will be able to see buttons do delete or edit the image.
+
+### **Cart page:**
+
+- A section with all product in the Shopping Cart, as well as their specifc informaiton and a buttons to remove it from the Cart.
+- A summary of their Cart, which the total number of item and grand total.
+- A Product Recomendation section that display availables Doodles to try to upsell them.
+
+### **Checkout page:**
+
+- A section with all product in the Shopping Cart, as well as their specifc informaiton.
+- A section with the grand total.
+- A form where the customer can add their details, addresss and credit card info to complet the purchase.
+- A button to go back to the Cart page, and one to finalize the Checkout.
 
 ### **Profile:**
 
-- This page shows the user information added through the Register form
-- It is also displayed some application status from the specific used logged.
+- Form that shows the user address information save in the database, which can be changed and updated.
+- A button to log out
+- A section with a summary of their last order.
 
 ### **Search:**
 
-- The Search page shows a search box input and a brief explanation of how the user can use this page.
-- Upon searching a word, the page shows the search result with the same layout used on the Program page, where the cards displayed contain the search query word. To test it, you can search for "Shoulder" or "Legs"
+- This page show a collection of Doodles cards that has the searched term on their Name or Description.
 
-### **App Status:**
+### **Managemetn / Add new Doodle :**
 
-- On this page, the Admin can see some applications status information, such as the quantity of user registred, quantity of exercises registered, etc.
-	
+- On this page that can be accessed only by the Admin, it is provided a form to upload a new Doodle to the Doodles Collection.
+
+### **Managemetn / Add new Gallery Image :**
+
+- On this page that can be accessed only by the Admin, it is provided a form to upload a image to the Gallery.
 
 ### **Features I could implement in the future:**
 
-- Add the possibility to have more than one program per user
-- Personalized exercises recommendations
-- Add videos to exercises cards
-- Add contact page
+- Add the possibility to select the body part area to be tattoo on the Custom page.
+- A feature to select the available dates to tattoo on the Cart page.
 
 ## **Technologies Used**
 
 ### **Database**
 
-Due to the current simplicity of this project, it was decided to use a NoSQL Database. All databases and datasets are storeged on [MongoDB](https://www.mongodb.com/), where the application can consult all the necessary information as objects.
+The databases where generated through the Django Models, which provides a greate way to create relationshing between tables and easly do any CRUD on them. On production the databases are saved on Postgres provided by Herohu.
 
 #### **Database structure:**
 
@@ -175,14 +211,11 @@ Due to the current simplicity of this project, it was decided to use a NoSQL Dat
 
 - HTML5 - To create and add content to the website.
 - CSS3 - To style the website content and provide responsiveness.
-- [Materialize CSS](https://materializecss.com/) - This framework was used on the website Header and Navigation menu.
+- [Materialize CSS](https://materializecss.com/) - This framework was used as a basic structure of the website, and for some pre made componets like the responsive navigation menu and toast pop up messages.
 - JavaScript - Used to display displayed the components from Materialize CSS and to animate the Index form slider.
 - [jQuery](https://jquery.com/) - Javascript library to manipulate the website content
 - Python - To write the backend code
-- [Flask](https://flask.palletsprojects.com/en/1.1.x/) - Python Framework to manage templates, routes, and queries
-- PyMongo - Python library to query Mongo Databases
-- [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) - Template language to create all pages
-- [MongoDB](https://www.mongodb.com/) - To create and store application databases
+- [Django](https://flask.palletsprojects.com/en/1.1.x/) - Python Framework to manage templates, routes, queries and databases.
 - [VS Code](https://code.visualstudio.com/) - The development tool used to write the website code
 - [GitHub](https://github.com/) - Used for version control and host files.
 - [Heroku](https://www.heroku.com/) - To deploy application
@@ -190,20 +223,19 @@ Due to the current simplicity of this project, it was decided to use a NoSQL Dat
 ### **Other Tools Used**
 
 - [Figma](https://figma.com/) - To create website wireframes.
-- [Trianglify.io](https://trianglify.io/p/w:1440!h:900!x:f72585.b5179e.7209b7.560bad.3a0ca3.3f37c9.4361ee.4895ef.4cc9f0!v:0.87!c:0.1!s:maok0j!f:sp!i:0.11) - Index page image
-- [Glassmorphism](https://glassmorphism.com/) - To create glassmorphism effects
-- [Youtube](https://www.youtube.com/watch?v=gBWRCe0HuQU&ab_channel=TheWebShala) - Inspiration for the index form desing
+- [Unsplash](https://unsplash.com/) - Project photos (Hero banner and Gallery)
+- [Pinterest](https://in.pinterest.com/) - Doodles images
 - [Font Awesome](https://fontawesome.com/) - Icons on Events and Riders page
 - [dbdiagram.io](https://dbdiagram.io/) - Used to create databases diagrams on Readme file
 
 ### **Educational Resources**
 
-- [Code Institue](https://courses.codeinstitute.net/) - Main source of content where the project inspiration and code design came from-
+- [Code Institute](https://courses.codeinstitute.net/) - Main source of content where the project inspiration and code design came from-
 - [CSS Tricks](http://css-tricks.com/) - Mainly used as a resource to help with Flexbox positioning
 - [Stack Overflow](https://stackoverflow.com/) - Used to find the reason for some errors found during the website development and for code inspiration to create the background aurora effect.
 
 ## **Testing**
-
+FIX
 ### **Testing User Stories:**
 
 - New user:

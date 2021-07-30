@@ -84,7 +84,7 @@ To improve page load speed, it was decided to not add external Font styles in th
 
 ### **Wireframes**:
 
-The project wireframes can be accessed [FIXclicking here]().
+The project wireframes can be accessed [clicking here](https://www.figma.com/file/aK6FhbMts1jMkbbAZRDPEO/Tatzy-Tattoo?node-id=0%3A1).
 
 Mobile:
 

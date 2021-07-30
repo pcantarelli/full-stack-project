@@ -213,7 +213,7 @@ The databases were generated through the Django Models, which provides a great w
 
 #### **Database structure:**
 
-![Database Structure](documentation/databases.jpg)
+![Database Structure](documentation/databases_diagram.jpg)
 
 ### **Languages, libraries, frameworks, editors, and version control**
 

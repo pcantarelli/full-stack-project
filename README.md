@@ -1,4 +1,4 @@
-# **Tatzt Tattoo**
+# **Tatzy Tattoo**
 
 ## **Backend Development Project - Code Institute**
 
